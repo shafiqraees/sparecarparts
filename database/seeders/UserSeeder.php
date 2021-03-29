@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
-                'password' =>bcrypt('12345678'),
+                'password' => Hash::make('12345678'),
                 'user_type' =>'Admin',
                 'profile_photo_path' =>'profiles/5fd1bcdde6728.jpeg',
                 'gender' =>'Male',
@@ -30,7 +31,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Breaker',
                 'email' => 'user1@gmail.com',
-                'password' =>bcrypt('12345678'),
+                'password' =>Hash::make('12345678'),
                 'user_type' =>'Supplier',
                 'profile_photo_path' =>'profiles/5fd1bcdde6728.jpeg',
                 'gender' =>'Male',
@@ -42,7 +43,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Front User',
                 'email' => 'user2@gmail.com',
-                'password' =>bcrypt('12345678'),
+                'password' =>Hash::make('12345678'),
                 'user_type' =>'User',
                 'profile_photo_path' =>'profiles/5fd1bcdde6728.jpeg',
                 'gender' =>'Male',

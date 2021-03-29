@@ -34,22 +34,16 @@ class LoginController extends Controller
      *
      * @var string
      */
+    protected $redirectTo = '/home';
     protected function redirectTo()
     {
-
         if (auth()->user()->user_type == 'Admin') {
 
-            return '/admin/dashboard';
-            //return redirect(route('admin.home'));
+            return 'admin/';
         }
-        return redirect(route('home'));
-        //return '/';
+        return '/home';
     }
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

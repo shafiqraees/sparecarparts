@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MakeController;
+use App\Http\Controllers\Admin\ModelController;
+use App\Http\Controllers\Admin\CarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +26,8 @@ Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findMod
 
 Auth::routes();
 Route::group([ 'prefix' => 'admin'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.home');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+    Route::resource('make', MakeController::class);
+    Route::resource('model', ModelController::class);
+    Route::resource('car', CarController::class);
 });

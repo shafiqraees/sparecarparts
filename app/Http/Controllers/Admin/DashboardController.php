@@ -14,11 +14,12 @@ class DashboardController extends Controller
      */
     /*public function __construct()
     {
+
         $this->middleware('auth');
     }*/
     /**
      * Show the application dashboard.
-     *
+     * eSquall@318
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
