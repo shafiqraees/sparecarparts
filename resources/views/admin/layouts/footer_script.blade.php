@@ -70,7 +70,7 @@
             ]
 
         });
-        var table = $('#admincar').DataTable({
+        var table2 = $('#admincar').DataTable({
 
             processing: true,
 
@@ -96,6 +96,28 @@
 
         });
 
+        var table = $('#adminspareparts').DataTable({
+
+            processing: true,
+
+            serverSide: true,
+
+            ajax: "{{ route('sparepart.index') }}",
+
+            columns: [
+
+                {data: 'id', name: 'id'},
+
+                {data: 'title', name: 'title'},
+                {data: 'carName', name: 'Make'},
+                {data: 'description', name: 'carModel'},
+                {data: 'status', name: 'status'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+
+            ]
+
+        });
 
 
     });

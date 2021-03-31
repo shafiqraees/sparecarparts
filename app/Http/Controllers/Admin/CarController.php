@@ -75,7 +75,6 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         try {
             DB::beginTransaction();
             //upload profile pic
