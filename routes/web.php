@@ -34,5 +34,6 @@ Route::group([ 'prefix' => 'admin'], function () {
     Route::get('model/delete/{id}', [ModelController::class,'deleteModel'])->name('model.delete');
     Route::resource('car', CarController::class);
     Route::resource('sparepart', SparePartsController::class);
+    Route::get('sparepart/delete/{id}', [SparePartsController::class,'deleteSparePart'])->name('sparepart.delete');
     Route::get('car/delete/{id}', [CarController::class,'deleteCar'])->name('car.delete');
 });

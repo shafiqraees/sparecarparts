@@ -32,7 +32,7 @@ class SparePartsController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("spareparts.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn = $btn.'<a href="' . route("spareparts.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = $btn.'<a href="' . route("sparepart.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -134,5 +134,19 @@ class SparePartsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function deleteSparePart($id)
+    {
+        try {
+            $data_exist = SparePart::find($id);
+            if ($data_exist) {
+                $data_exist->delete();
+                return redirect(route('sparepart.index'))->with('success', 'Record has been deleted.');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }
     }
 }
