@@ -4,16 +4,8 @@
     <list default="true" id="6c841ee6-f7d8-4ec2-8dea-0448db2040a3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MakeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MakeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Make.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Make.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/car/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/car/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +170,7 @@
       <workItem from="1617036370885" duration="14564000" />
       <workItem from="1617122213765" duration="2376000" />
       <workItem from="1617131067168" duration="1297000" />
-      <workItem from="1617212465444" duration="10727000" />
+      <workItem from="1617212465444" duration="11283000" />
     </task>
     <servers />
   </component>
@@ -196,6 +188,15 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php</url>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php</url>
+          <line>121</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\Admin\ModelController" />
+            <option name="methodName" value="update" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
