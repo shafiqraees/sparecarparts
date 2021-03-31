@@ -4,15 +4,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Models</h3>
+                    <h3 class="content-header-title">Cars</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('model.index')}}">Model</a>
+                                <li class="breadcrumb-item"><a href="{{route('model.index')}}">Cars</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create Model
+                                <li class="breadcrumb-item active">Create Car
                                 </li>
                             </ol>
                         </div>
@@ -46,19 +46,78 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Model Form</h4>
+                                    <h4 class="card-title">Car Form</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
 
-                                        <form class="form-horizontal" action="{{route('model.store')}}" method="post" enctype="multipart/form-data"  novalidate>
+                                        <form class="form-horizontal" action="{{route('car.store')}}" method="post" enctype="multipart/form-data"  novalidate>
                                             @csrf
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12">
                                                     <div class="form-group">
-                                                        <h5>Name
+                                                        <h5>Ttile
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="title" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Model
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="model" id="select" required class="form-control">
+                                                                <option value="">Select Status</option>
+                                                                @foreach($model as $mod)
+                                                                    <option value="{{$mod->id}}">{{$mod->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Mileage
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="mileage" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Registration
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="registration" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Fuel
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="fuel" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <h5>Make
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="make" id="select" required class="form-control">
+                                                                <option value="">Select Status</option>
+                                                                @foreach($make as $row)
+                                                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Year
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
@@ -66,19 +125,21 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <h5>Status
+                                                        <h5>Transmission
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <select name="status" id="select" required class="form-control">
-                                                                <option value="">Select Status</option>
-                                                                <option value="publish">Publish</option>
-                                                                <option value="unPublish">Unpublish</option>
-                                                            </select>
+                                                            <input type="text" name="transmission" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <h5>Description
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="description" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <h5>Icon
                                                             <span class="required">*</span>

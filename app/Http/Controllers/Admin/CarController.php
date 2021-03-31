@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\CarModel;
 use App\Models\Make;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,7 +54,17 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('admin.car.create');
+        try {
+            $make = Make::whereStatus('publish')->get();
+            $model = CarModel::whereStatus('publish')->get();
+
+            return view('admin.car.create',compact('make','model'));
+
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }
+
     }
 
     /**
@@ -64,21 +75,28 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         try {
-
             DB::beginTransaction();
             //upload profile pic
             $path = "profiles/default.png";
             if($request->hasFile('image')){
-                SaveImageAllSizes($request, 'advertise/');
-                $path = 'make/'.$request->image->hashName();
+                SaveImageAllSizes($request, 'car/');
+                $path = 'car/'.$request->image->hashName();
             }
             $data = [
-                'name' => $request->name,
-                'status' => $request->status,
+                'title' => $request->title,
+                'make_id' => $request->make,
+                'car_model_id' => $request->model,
+                'year' => $request->year,
+                'registration' => $request->registration,
+                'mileage' => $request->mileage,
+                'transmission' => $request->transmission,
+                'fuel' => $request->fuel,
+                'description' => $request->description,
                 'image' => empty($path) ? 'defaul.png' : $path,
             ];
-            Make::Create($data);
+            Car::Create($data);
             DB::commit();
             return redirect(route('car.index'))->with('success', 'Make inserted successfully.');
         } catch ( \Exception $e) {

@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c841ee6-f7d8-4ec2-8dea-0448db2040a3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sparecarparts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sparecarparts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/footer_script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/footer_script.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +169,10 @@
       <option name="presentableId" value="Default" />
       <updated>1617034282040</updated>
       <workItem from="1617034283879" duration="602000" />
-      <workItem from="1617036370885" duration="13709000" />
+      <workItem from="1617036370885" duration="14564000" />
+      <workItem from="1617122213765" duration="2376000" />
+      <workItem from="1617131067168" duration="1297000" />
+      <workItem from="1617212465444" duration="3257000" />
     </task>
     <servers />
   </component>
