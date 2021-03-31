@@ -36,8 +36,8 @@ class CarController extends Controller
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="' . route("make.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn = $btn.'<a href="' . route("make.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = '<a href="' . route("car.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = $btn.'<a href="' . route("car.delete", $row->id) . '" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -97,10 +97,10 @@ class CarController extends Controller
             ];
             Car::Create($data);
             DB::commit();
-            return redirect(route('car.index'))->with('success', 'Make inserted successfully.');
+            return redirect(route('car.index'))->with('success', 'Car inserted successfully.');
         } catch ( \Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return Redirect::back()->withErrors(['Sorry Record not inserted.']);
         }
     }
 
@@ -112,7 +112,7 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+       //dd('ada');
     }
 
     /**
@@ -124,15 +124,17 @@ class CarController extends Controller
     public function edit($id)
     {
         try {
-            $data = User::find($id);
+            $data = Car::find($id);
+            $make = Make::whereStatus('publish')->get();
+            $model = CarModel::whereStatus('publish')->get();
             if ($data) {
-                return view('car.edit',compact('data'));
+                return view('admin.car.edit',compact('data','make','model'));
             } else {
-                return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+                return Redirect::back()->withErrors(['error', 'Sorry Record not found.']);
             }
         } catch ( \Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return Redirect::back()->withErrors(['error', 'Sorry Record not found.']);
         }
     }
 
@@ -146,36 +148,41 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'title' => 'required',
         ]);
 
-        if(!empty($request->passord)){
-            $validated = $request->validate([
-                'password_confirmation' => 'required|same:Password',
-            ]);
-        }
+
         try {
             //dd($request);
+            $car = Car::find($id);
             DB::beginTransaction();
-            $user = User::find($id);
-            if ($user){
+            if ($car){
+                if ($request->hasFile('profile_pic')){
+                    UpdateImageAllSizes($request, 'car/', $car->image);
+                    //$path = Storage::disk('s3')->put('profiles', $request->file('profile_pic'));
+                    $path = 'car/'.$request->profile_pic->hashName();
+                }
                 $data = [
-                    'name' => $request->name,
-                    'password' => !empty($request->password) ? bcrypt($request->password) : $user->password,
-                    'org_password' => !empty($request->password) ? $request->password : $user->password,
-                    'phone' => !empty($request->phone) ? $request->phone : $user->phone,
-                    'address' => !empty($request->address) ? $request->address : $user->address,
-                    'gender' => !empty($request->gendr) ? $request->gendr : $user->gendr,
+                    'title' => !empty($request->title) ? $request->title : $car->title,
+                    'make_id' => !empty($request->make) ? $request->make : $car->make_id,
+                    'car_model_id' =>  !empty($request->model) ? $request->model : $car->car_model_id,
+                    'year' =>  !empty($request->year) ? $request->year : $car->year,
+                    'registration' => !empty($request->registration) ? $request->registration : $car->registration,
+                    'mileage' => !empty($request->mileage) ? $request->mileage : $car->mileage,
+                    'transmission' => !empty($request->transmission) ? $request->transmission : $car->transmission,
+                    'fuel' => !empty($request->fuel) ? $request->fuel : $car->fuel,
+                    'description' =>  !empty($request->description) ? $request->description : $car->description,
+                    'image' => empty($path) ? 'defaul.png' : $path,
                 ];
 
-                $user->update($data);
+                $car->update($data);
                 DB::commit();
-                return redirect(route('users.index'))->with('success', 'Record has been updated.');
+                return redirect(route('car.index'))->with('success', 'Record has been updated.');
             }
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
         } catch ( \Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
         }
     }
 
@@ -187,11 +194,32 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         try {
-            $data_exist = User::find($id);
+            $data_exist = Car::find($id);
             if ($data_exist) {
                 $data_exist->delete();
-                return redirect(route('users.index'))->with('success', 'Record has been deleted.');
+                return redirect(route('car.index'))->with('success', 'Record has been deleted.');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteCar($id)
+    {
+        try {
+            $data_exist = Car::find($id);
+            if ($data_exist) {
+                $data_exist->delete();
+                return redirect(route('car.index'))->with('success', 'Record has been deleted.');
             }
         } catch (\Exception $e) {
             DB::rollBack();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Make;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class MakeController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("make.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn = $btn.'<a href="' . route("make.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = $btn.'<a href="' . route("make.delete", $row->id) . '" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -60,7 +61,7 @@ class MakeController extends Controller
             //upload profile pic
             $path = "profiles/default.png";
             if($request->hasFile('image')){
-                SaveImageAllSizes($request, 'advertise/');
+                SaveImageAllSizes($request, 'make/');
                 $path = 'make/'.$request->image->hashName();
             }
             $data = [
@@ -97,15 +98,15 @@ class MakeController extends Controller
     public function edit($id)
     {
         try {
-            $data = User::find($id);
+            $data = Make::find($id);
             if ($data) {
-                return view('users.edit',compact('data'));
+                return view('admin.make.edit',compact('data'));
             } else {
-                return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+                return Redirect::back()->withErrors(['error', 'Sorry Record not found.']);
             }
         } catch ( \Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return Redirect::back()->withErrors(['error', 'Sorry Record not found.']);
         }
     }
 
@@ -122,34 +123,30 @@ class MakeController extends Controller
             'name' => 'required',
         ]);
 
-        if(!empty($request->passord)){
-            $validated = $request->validate([
-                'password_confirmation' => 'required|same:Password',
-            ]);
-        }
-        try {
+        //try {
             //dd($request);
+            $make = Make::find($id);
             DB::beginTransaction();
-            $user = User::find($id);
-            if ($user){
+            if ($make){
+                if ($request->hasFile('profile_pic')){
+                    UpdateImageAllSizes($request, 'make/', $make->image);
+                    //$path = Storage::disk('s3')->put('profiles', $request->file('profile_pic'));
+                    $path = 'make/'.$request->profile_pic->hashName();
+                }
                 $data = [
-                    'name' => $request->name,
-                    'password' => !empty($request->password) ? bcrypt($request->password) : $user->password,
-                    'org_password' => !empty($request->password) ? $request->password : $user->password,
-                    'phone' => !empty($request->phone) ? $request->phone : $user->phone,
-                    'address' => !empty($request->address) ? $request->address : $user->address,
-                    'gender' => !empty($request->gendr) ? $request->gendr : $user->gendr,
+                    'name' => !empty($request->name) ? $request->name : $make->name,
+                    'status' => !empty($request->status) ? $request->status : $make->status,
+                    'image' => empty($path) ? 'defaul.png' : $path,
                 ];
-
-                $user->update($data);
+                $make->update($data);
                 DB::commit();
-                return redirect(route('users.index'))->with('success', 'Record has been updated.');
+                return redirect(route('make.index'))->with('success', 'Record has been updated.');
             }
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
-        } catch ( \Exception $e) {
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        /*} catch ( \Exception $e) {
             DB::rollBack();
             return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
-        }
+        }*/
     }
 
     /**
@@ -165,6 +162,26 @@ class MakeController extends Controller
             if ($data_exist) {
                 $data_exist->delete();
                 return redirect(route('users.index'))->with('success', 'Record has been deleted.');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMake($id)
+    {
+        try {
+            $data_exist = Make::find($id);
+            if ($data_exist) {
+                $data_exist->delete();
+                return redirect(route('make.index'))->with('success', 'Record has been deleted.');
             }
         } catch (\Exception $e) {
             DB::rollBack();

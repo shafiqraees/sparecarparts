@@ -82,7 +82,7 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="mileage" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="number" name="mileage" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -121,7 +121,7 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="name" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="number" name="year" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

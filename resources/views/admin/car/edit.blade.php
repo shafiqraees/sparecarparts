@@ -3,14 +3,17 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Interest</h3>
-                    <div class="row breadcrumbs-top d-inline-block">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h3 class="content-header-title">Cars</h3>
+                    <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admindashboard')}}">Dashboard</a> </li>
-                                <li class="breadcrumb-item"><a href="{{route('topic_list')}}">Topics</a> </li>
-                                <li class="breadcrumb-item active">Topic edit </li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="{{route('model.index')}}">Cars</a>
+                                </li>
+                                <li class="breadcrumb-item active">Edit Car
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -37,62 +40,128 @@
                 </div>
             @endif
             <div class="content-body">
-                <form class="form-horizontal" id="formsss" method="post" action="{{route('topic_update',$data->id)}}" name="specifycontent" enctype="multipart/form-data">
-                    @csrf
-                    <section id="card-bordered-options">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="card box-shadow-0 border-dark">
-                                    <div class="card-header card-head-inverse bg-dark">
-                                        <h4 class="card-title text-white">Update Interest</h4>
-                                    </div>
-                                    <div class="card-content collapse show">
-                                        <div class="card-body">
-                                            <fieldset class="form-group row">
-                                                <div class="col-md-6 mt-1">
-                                                    <label class="inline-block" for="sel1">Name </label>
-                                                    <input type="text" name="name" value="{{$data->name}}" class="form-control heightinputs" id="basicInput" required>
-                                                </div>
-                                                <div class="col-md-6 mt-1">
-                                                    <label class="inline-block" for="sel1">Status</label>
-                                                    <select class="form-control" aria-invalid="false" name="status" required>
-                                                        <option value="Publish" {{ ( $data->status == "Publish") ? 'selected' : '' }}>Publish</option>
-                                                        <option value="Unpublish" {{ ( $data->status == "Unpublish") ? 'selected' : '' }}>Unpublish</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 mt-1">
-
-                                                    <div class="form-group ">
-                                                        <label class="inline-block" for="sel1">Images</label>
-
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                    <span class="input-group-text bg-dark border-dark white" id="basic-addon7 fonticon-container">
-                                                            <div class="fonticon-wrap">
-                                                                <i class="ft-image"></i>
-                                                            </div>
-                                                                    </span>
-                                                            </div>
-                                                            <input type="file" name="profile_pic"  id="basicInputfiled" class="form-control  heightinputs errormessage " name="bannerupload" accept="image/*" required>
-
+                <!-- Input Validation start -->
+                <section class="input-validation">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Car Form</h4>
+                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body">
+                                        <form class="form-horizontal" action="{{route('car.update',$data->id)}}" method="post" enctype="multipart/form-data"  novalidate>
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <h5>Ttile
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="title" value="{{$data->title}}" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <h5>Model
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="model" id="select" required class="form-control">
+                                                                <option value="">Select Model</option>
+                                                                @foreach($model as $mod)
+                                                                    <option value="{{$mod->id}}" {{ $data->car_model_id == $mod->id ? 'selected="selected"' : '' }}>{{$mod->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Mileage
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="number" value="{{$data->mileage}}" name="mileage" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Registration
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="registration" value="{{$data->registration}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Fuel
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="fuel" value="{{$data->fuel}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6 mt-3">
-                                                    <img src="{{Storage::disk('s3')->exists('xs/'.$data->image) ? Storage::disk('s3')->url('xs/'.$data->image) : Storage::disk('s3')->url('default.png')}}" />
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <h5>Make
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="make" id="select" required class="form-control">
+                                                                <option value="">Select Make</option>
+                                                                @foreach($make as $row)
+                                                                    <option value="{{$row->id}}"{{ $data->make_id == $row->id ? 'selected="selected"' : '' }}>{{$row->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Year
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="number" name="year" value="{{$data->year}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Transmission
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="transmission" value="{{$data->transmission}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Description
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="description" value="{{$data->description}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Icon
+                                                            <span class="required"></span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="file" name="profile_pic" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button type="submit" class="btn btn-success">Submit <i class="la la-thumbs-o-up position-right"></i></button>
+                                                        <button type="reset" class="btn btn-danger">Reset <i class="la la-refresh position-right"></i></button>
+                                                    </div>
                                                 </div>
-                                            </fieldset>
-                                            <div class="form-actions float-right mt-0 pt-0 buttonbordertop">
-                                                <button type="submit" class="btn btn-social btn-dark btn-dark text-center  pr-1"> <span class="la la-check font-medium-3"></span> Update </button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </form>
+                    </div>
+                </section>
+                <!-- Switch Validation end -->
             </div>
         </div>
     </div>

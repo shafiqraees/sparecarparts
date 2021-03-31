@@ -28,7 +28,7 @@ class ModelController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("model.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn = $btn.'<a href="' . route("model.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = $btn.'<a href="' . route("model.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

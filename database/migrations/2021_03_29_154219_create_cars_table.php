@@ -21,7 +21,7 @@ class CreateCarsTable extends Migration
             $table->unsignedBigInteger('make_id')->nullable();
             $table->unsignedBigInteger('car_model_id')->nullable();
             $table->integer('year')->nullable();
-            $table->float('mileage')->nullable();
+            $table->string('mileage')->nullable();
             $table->string('registration')->nullable();
             $table->string('transmission')->nullable();
             $table->smallInteger('doors')->nullable();
