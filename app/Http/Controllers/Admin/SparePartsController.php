@@ -31,7 +31,7 @@ class SparePartsController extends Controller
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="' . route("spareparts.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = '<a href="' . route("sparepart.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn = $btn.'<a href="' . route("sparepart.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
@@ -75,6 +75,7 @@ class SparePartsController extends Controller
                 SaveImageAllSizes($request, 'spare_parts/');
                 $path = 'spare_parts/'.$request->image->hashName();
             }
+
             $data = [
                 'title' => $request->title,
                 'car_id' => $request->car_id,

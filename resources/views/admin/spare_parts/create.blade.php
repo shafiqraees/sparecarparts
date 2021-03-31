@@ -10,7 +10,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('sparepart.index')}}">Cars</a>
+                                <li class="breadcrumb-item"><a href="{{route('sparepart.index')}}">Spare parts</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create spare part
                                 </li>
@@ -82,7 +82,7 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="mileage" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="text" name="description" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -90,7 +90,7 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="number" name="fuel" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="number" name="price" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                 </div>

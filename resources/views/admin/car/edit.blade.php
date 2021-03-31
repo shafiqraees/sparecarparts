@@ -4,15 +4,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Spare parts</h3>
+                    <h3 class="content-header-title">Cars</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('model.index')}}">Spare parts</a>
+                                <li class="breadcrumb-item"><a href="{{route('model.index')}}">Cars</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit Spare part
+                                <li class="breadcrumb-item active">Edit Car
                                 </li>
                             </ol>
                         </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form-horizontal" action="{{route('sparepart.update',$data->id)}}" method="post" enctype="multipart/form-data"  novalidate>
+                                        <form class="form-horizontal" action="{{route('car.update',$data->id)}}" method="post" enctype="multipart/form-data"  novalidate>
                                             @csrf
                                             @method('PUT')
                                             <div class="row">
@@ -65,28 +65,73 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <h5>Car
+                                                        <h5>Model
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <select name="car_id" id="select" required class="form-control">
-                                                                <option value="">Select Car</option>
-                                                                @foreach($cars as $car)
-                                                                    <option value="{{$car->id}}" {{ $data->car_id == $car->id ? 'selected="selected"' : '' }}>{{$car->title}}</option>
+                                                            <select name="model" id="select" required class="form-control">
+                                                                <option value="">Select Model</option>
+                                                                @foreach($model as $mod)
+                                                                    <option value="{{$mod->id}}" {{ $data->car_model_id == $mod->id ? 'selected="selected"' : '' }}>{{$mod->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <h5>Price
+                                                        <h5>Mileage
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="price" value="{{$data->price}}" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="number" value="{{$data->mileage}}" name="mileage" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Registration
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="registration" value="{{$data->registration}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Fuel
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="fuel" value="{{$data->fuel}}" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <h5>Make
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="make" id="select" required class="form-control">
+                                                                <option value="">Select Make</option>
+                                                                @foreach($make as $row)
+                                                                    <option value="{{$row->id}}"{{ $data->make_id == $row->id ? 'selected="selected"' : '' }}>{{$row->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Year
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="number" name="year" value="{{$data->year}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Transmission
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="transmission" value="{{$data->transmission}}" class="form-control" required data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <h5>Description
                                                             <span class="required">*</span>

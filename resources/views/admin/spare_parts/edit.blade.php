@@ -8,9 +8,9 @@
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admindashboard')}}">Dashboard</a> </li>
-                                <li class="breadcrumb-item"><a href="{{route('topic_list')}}">Topics</a> </li>
-                                <li class="breadcrumb-item active">Topic edit </li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a> </li>
+                                <li class="breadcrumb-item"><a href="{{route('sparepart.index')}}">Spare parts</a> </li>
+                                <li class="breadcrumb-item active">edit </li>
                             </ol>
                         </div>
                     </div>
@@ -37,21 +37,30 @@
                 </div>
             @endif
             <div class="content-body">
-                <form class="form-horizontal" id="formsss" method="post" action="{{route('topic_update',$data->id)}}" name="specifycontent" enctype="multipart/form-data">
+                <form class="form-horizontal" id="formsss" method="post" action="{{route('sparepart.update',$data->id)}}" name="specifycontent" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <section id="card-bordered-options">
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="card box-shadow-0 border-dark">
                                     <div class="card-header card-head-inverse bg-dark">
-                                        <h4 class="card-title text-white">Update Interest</h4>
+                                        <h4 class="card-title text-white">Update Spare part</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
                                             <fieldset class="form-group row">
                                                 <div class="col-md-6 mt-1">
-                                                    <label class="inline-block" for="sel1">Name </label>
-                                                    <input type="text" name="name" value="{{$data->name}}" class="form-control heightinputs" id="basicInput" required>
+                                                    <label class="inline-block" for="sel1">Title </label>
+                                                    <input type="text" name="title" value="{{$data->title}}" class="form-control heightinputs" id="basicInput" required>
+                                                </div>
+                                                <div class="col-md-6 mt-1">
+                                                    <label class="inline-block" for="sel1">description </label>
+                                                    <input type="text" name="description" value="{{$data->description}}" class="form-control heightinputs" id="basicInput" required>
+                                                </div>
+                                                <div class="col-md-6 mt-1">
+                                                    <label class="inline-block" for="sel1">Price </label>
+                                                    <input type="text" name="price" value="{{$data->price}}" class="form-control heightinputs" id="basicInput" required>
                                                 </div>
                                                 <div class="col-md-6 mt-1">
                                                     <label class="inline-block" for="sel1">Status</label>
@@ -80,7 +89,8 @@
 
                                                 </div>
                                                 <div class="col-md-6 mt-3">
-                                                    <img src="{{Storage::disk('s3')->exists('xs/'.$data->image) ? Storage::disk('s3')->url('xs/'.$data->image) : Storage::disk('s3')->url('default.png')}}" />
+{{--                                                    <input type="file" name="profile_pic" class="form-control">--}}
+{{--                                                    <img src="{{Storage::disk('s3')->exists('xs/'.$data->image) ? Storage::disk('s3')->url('xs/'.$data->image) : Storage::disk('s3')->url('default.png')}}" />--}}
                                                 </div>
                                             </fieldset>
                                             <div class="form-actions float-right mt-0 pt-0 buttonbordertop">
