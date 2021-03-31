@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MakeController;
 use App\Http\Controllers\Admin\ModelController;
 use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\SparePartsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,6 @@ Route::group([ 'prefix' => 'admin'], function () {
     Route::resource('model', ModelController::class);
     Route::get('model/delete/{id}', [ModelController::class,'deleteModel'])->name('model.delete');
     Route::resource('car', CarController::class);
+    Route::resource('sparepart', SparePartsController::class);
     Route::get('car/delete/{id}', [CarController::class,'deleteCar'])->name('car.delete');
 });

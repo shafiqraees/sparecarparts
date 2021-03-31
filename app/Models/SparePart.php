@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SparePart extends Model
 {
     use HasFactory;
+
+    public function car() {
+        return $this->belongsTo( Car::class);
+    }
 }

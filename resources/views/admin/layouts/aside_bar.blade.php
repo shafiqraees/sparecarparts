@@ -2,7 +2,6 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a href="{{route('admin.home')}}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span></a>
-
             </li>
 
             <li class=" nav-item"><a href="#"><i class="la la-columns"></i><span class="menu-title" data-i18n="nav.page_layouts.main">Make</span></a>
@@ -32,21 +31,9 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="la la-android"></i><span class="menu-title" data-i18n="nav.menu_levels.main">Spare Parts</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level">Second level</a>
+                    <li><a class="menu-item" href="{{route('sparepart.create')}}" data-i18n="nav.navbars.nav_light">Add Spare parts</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level_child.main">Second level child</a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level_child.third_level">Third level</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level_child.third_level_child.main">Third level child</a>
-                                <ul class="menu-content">
-                                    <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level_child.third_level_child.fourth_level1">Fourth level</a>
-                                    </li>
-                                    <li><a class="menu-item" href="#" data-i18n="nav.menu_levels.second_level_child.third_level_child.fourth_level2">Fourth level</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <li><a class="menu-item" href="{{route('sparepart.index')}}" data-i18n="nav.navbars.nav_dark">All Spare parts</a>
                     </li>
                 </ul>
             </li>

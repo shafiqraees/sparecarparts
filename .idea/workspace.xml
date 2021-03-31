@@ -4,8 +4,28 @@
     <list default="true" id="6c841ee6-f7d8-4ec2-8dea-0448db2040a3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SparePartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SparePartsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/SparePart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SparePart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/footer_script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/footer_script.blade.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MakeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MakeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Make.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Make.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_29_154219_create_cars_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/car/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/car/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/car/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" afterDir="false" />
+>>>>>>> 92a79bc81d1df4993112c4bc14d06b437c482626
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+>>>>>>> c931786b0580db4d853c09553608cc309a5fca79
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +169,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="J:/workspace/laravel/sparecarparts" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -170,7 +192,19 @@
       <workItem from="1617036370885" duration="14564000" />
       <workItem from="1617122213765" duration="2376000" />
       <workItem from="1617131067168" duration="1297000" />
+<<<<<<< HEAD
       <workItem from="1617212465444" duration="11283000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1617212465444" duration="3257000" />
+      <workItem from="1617217893484" duration="59000" />
+      <workItem from="1617221524997" duration="2529000" />
+      <workItem from="1617224123899" duration="59000" />
+      <workItem from="1617224185514" duration="987000" />
+=======
+      <workItem from="1617212465444" duration="10727000" />
+>>>>>>> 92a79bc81d1df4993112c4bc14d06b437c482626
+>>>>>>> c931786b0580db4d853c09553608cc309a5fca79
     </task>
     <servers />
   </component>
@@ -182,7 +216,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php</url>
-          <line>58</line>
+          <line>45</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
