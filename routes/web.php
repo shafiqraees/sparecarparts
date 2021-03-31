@@ -28,6 +28,9 @@ Auth::routes();
 Route::group([ 'prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::resource('make', MakeController::class);
+    Route::get('make/delete/{id}', [MakeController::class,'deleteMake'])->name('make.delete');
     Route::resource('model', ModelController::class);
+    Route::get('model/delete/{id}', [ModelController::class,'deleteModel'])->name('model.delete');
     Route::resource('car', CarController::class);
+    Route::get('car/delete/{id}', [CarController::class,'deleteCar'])->name('car.delete');
 });

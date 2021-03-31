@@ -89,15 +89,15 @@ function SavePostJsonImageAllSizes($image_base64, $dir, $image_path){
 
 function UpdateImageAllSizes($request, $dir, $old_image){
     //Delete old images
-    /*	Storage::disk('public')->delete('lg/' . $old_image);
+    	Storage::disk('public')->delete('lg/' . $old_image);
         Storage::disk('public')->delete('md/' . $old_image);
         Storage::disk('public')->delete('sm/' . $old_image);
-        Storage::disk('public')->delete('xs/' . $old_image);*/
+        Storage::disk('public')->delete('xs/' . $old_image);
     //for s3 bucket
-    Storage::disk('s3')->delete('lg/' . $old_image);
+    /*Storage::disk('s3')->delete('lg/' . $old_image);
     Storage::disk('s3')->delete('md/' . $old_image);
     Storage::disk('s3')->delete('sm/' . $old_image);
-    Storage::disk('s3')->delete('xs/' . $old_image);
+    Storage::disk('s3')->delete('xs/' . $old_image);*/
     $lg_image = Image::make($request->file('profile_pic'))->fit(400);
     $lg_image->response('png');
 
@@ -112,15 +112,15 @@ function UpdateImageAllSizes($request, $dir, $old_image){
 
     $image_name = $request->profile_pic->hashName();
 
-    /* Storage::disk('public')->put('lg/' .$dir . $image_name, $lg_image);
+     Storage::disk('public')->put('lg/' .$dir . $image_name, $lg_image);
      Storage::disk('public')->put('md/' .$dir. $image_name, $md_image);
      Storage::disk('public')->put('sm/' .$dir. $image_name, $sm_image);
-     Storage::disk('public')->put('xs/'.$dir . $image_name, $xs_image);*/
+     Storage::disk('public')->put('xs/'.$dir . $image_name, $xs_image);
     //for s3 bucket
-    Storage::disk('s3')->put('lg/' .$dir . $image_name, $lg_image);
+    /*Storage::disk('s3')->put('lg/' .$dir . $image_name, $lg_image);
     Storage::disk('s3')->put('md/' .$dir. $image_name, $md_image);
     Storage::disk('s3')->put('sm/' .$dir. $image_name, $sm_image);
-    Storage::disk('s3')->put('xs/'.$dir . $image_name, $xs_image);
+    Storage::disk('s3')->put('xs/'.$dir . $image_name, $xs_image);*/
 }
 
 function UpdateJsonImageAllSizes($image_base64, $dir, $image_path ,$old_image){
@@ -269,133 +269,3 @@ function UpdatePhotoAllSizes($request, $dir, $old_image){
     Storage::disk('public')->put($dir . 'xs/' . $image_name, $xs_image);
 }
 
-function sendNotificationFCM($notification_id, $title, $message, $id,$type) {
-
-    $accesstoken = env('FCM_KEY');
-    $URL = 'https://fcm.googleapis.com/fcm/send';
-    $post_data = '{
-            "to" : "' . $notification_id . '",
-            "data" : {
-              "body" : "",
-              "title" : "' . $title . '",
-              "type" : "' . $type . '",
-              "id" : "' . $id . '",
-              "message" : "' . $message . '",
-            },
-            "notification" : {
-                 "body" : "' . $message . '",
-                 "title" : "' . $title . '",
-                  "type" : "' . $type . '",
-                 "id" : "' . $id . '",
-                 "message" : "' . $message . '",
-                "icon" : "new",
-                "sound" : "default"
-                },
-
-          }';
-
-    $crl = curl_init();
-    $headr = array();
-    $headr[] = 'Content-type: application/json';
-    $headr[] = 'Authorization: ' . $accesstoken;
-    curl_setopt($crl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($crl, CURLOPT_URL, $URL);
-    curl_setopt($crl, CURLOPT_HTTPHEADER, $headr);
-    curl_setopt($crl, CURLOPT_POST, true);
-    curl_setopt($crl, CURLOPT_POSTFIELDS, $post_data);
-    curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
-    $rest = curl_exec($crl);
-    if ($rest === false) {
-        // throw new Exception('Curl error: ' . curl_error($crl));
-        //print_r('Curl error: ' . curl_error($crl));
-        $result_noti = 0;
-    } else {
-        $result_noti = 1;
-    }
-    return $result_noti;
-}
-
-function sendEmail($email_to, $subject, $body,$type ) {
-
-    $to = $email_to;
-    //$subject = 'Welcome to YQ';
-    $from = 'yq@arcticapps.dev';
-
-// To send HTML mail, the Content-type header must be set
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-// Create email headers
-    $headers .= 'From: '.$from."\r\n".
-        'Reply-To: '.$from."\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-
-// Compose a simple HTML email message
-    $message = '<html><body>';
-    if (isset($type) && $type == "register"){
-        $message .= "<p>Welcome to YQ. We are thrilled to have you with us. We hope your experience with us would be fascinating.</p>";
-    }
-    if (isset($type) && $type == "verify"){
-        $message .= '<p>"'.(int)( $body).'"</p>';
-    } else {
-        $message .= '<p>"'.$body.'"</p>';
-    }
-    $message .= '</body></html>';
-
-// Sending email
-    if(mail($to, $subject, $message, $headers)){
-        return "success";
-    } else{
-        echo 'please enter valid email.';
-    }
-}
-
-function sendFireBaseNotification($firebase_token, $title,$body, $body_data = null)
-
-{
-
-    //$firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
-    $token = "er-Pd-FfS2KUN76aEPheMQ:APA91bFjAJ_u9P2MSzL2yW8mhBGZAaib2-rMrDkKQ6BpCcWXS8DNcJrhCQvLHaDBXxVzOcSTNUP7ezN_1k0zT3uxuNQ54D76zkswZQm7iX4jQPIOMwQeSeEvJ1ZNBAXRl0nlKxryDE6V";
-
-    $firebase = $token;
-
-    $SERVER_API_KEY = "AAAArGWF1DA:APA91bGCHo5eUZFzrQrb_E4kzp8LYHBVHKdso2zuo3U8khGv8Llg8DGdkkccGnWC9jH5PnEp7vjcvQLYOQegMQnp0ZycgVF8-DOAAfrJW-GKn6YKrEH1zf_rV_uRQl3a_czXdZHVE60j";
-
-    $data = [
-        "to" => $firebase_token,
-        "notification" => [
-            "body" => $body,
-            "title" => $title,
-            "icon" => "no"
-        ],
-        "data" => $body_data
-    ];
-
-    $dataString = json_encode($data);
-
-    $headers = [
-
-        'Authorization: key=' . $SERVER_API_KEY,
-
-        'Content-Type: application/json',
-    ];
-
-    $ch = curl_init();
-
-    curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-
-    curl_setopt($ch, CURLOPT_POST, true);
-
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-    $response = curl_exec($ch);
-    Log::info($response);
-    return $response;
-
-}
