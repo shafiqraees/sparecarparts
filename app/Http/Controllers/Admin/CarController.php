@@ -194,7 +194,7 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+
         try {
             $data_exist = Car::find($id);
             if ($data_exist) {

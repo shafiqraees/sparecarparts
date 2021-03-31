@@ -5,6 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CarController.php" afterDir="false" />
 <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/model/edit.blade.php" afterDir="false" />
+=======
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SparePartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SparePartsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/SparePart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SparePart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php" afterDir="false" />
@@ -21,6 +25,7 @@
       <change beforePath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/make/edit.blade.php" afterDir="false" />
 >>>>>>> 92a79bc81d1df4993112c4bc14d06b437c482626
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+>>>>>>> c931786b0580db4d853c09553608cc309a5fca79
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +193,9 @@
       <workItem from="1617122213765" duration="2376000" />
       <workItem from="1617131067168" duration="1297000" />
 <<<<<<< HEAD
+      <workItem from="1617212465444" duration="11283000" />
+=======
+<<<<<<< HEAD
       <workItem from="1617212465444" duration="3257000" />
       <workItem from="1617217893484" duration="59000" />
       <workItem from="1617221524997" duration="2529000" />
@@ -196,6 +204,7 @@
 =======
       <workItem from="1617212465444" duration="10727000" />
 >>>>>>> 92a79bc81d1df4993112c4bc14d06b437c482626
+>>>>>>> c931786b0580db4d853c09553608cc309a5fca79
     </task>
     <servers />
   </component>
@@ -213,6 +222,15 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/layouts/aside_bar.blade.php</url>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php</url>
+          <line>121</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\Admin\ModelController" />
+            <option name="methodName" value="update" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
