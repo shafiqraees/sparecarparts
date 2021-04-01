@@ -147,54 +147,57 @@
         <div class="brands-logos container">
             @if(!empty($make))
                 @foreach($make as $brand)
-                    <img src="{{Storage::disk('public')->exists('lg/'.$brand->image) ? Storage::disk('public')->url('lg/'.$brand->image) : Storage::disk('public')->url('default.png')}}" alt="">
-
+                    <a href="{{ url('car/spareparts/'. $brand->id) }}">
+                        <img
+                            src="{{Storage::disk('public')->exists('lg/'.$brand->image) ? Storage::disk('public')->url('lg/'.$brand->image) : Storage::disk('public')->url('default.png')}}"
+                            alt="">
+                    </a>
                 @endforeach
             @endif
-                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">
-                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">
-            
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">--}}
+            {{--                    <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">--}}
+
         </div>
     </div>
 
@@ -203,17 +206,28 @@
     <div class="brands-logo-mobile container">
         <h3 class="text-center font-weight-bold">Top Vehicle Brands</h3>
         <section class="customer-logos slider">
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
-            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="logo"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand2.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand3.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand4.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand5.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand6.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand7.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand8.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
+            <div class="slide"><img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="logo"><img
+                    src="{{asset('public/frontend/assets/img/brand1.png')}}" alt="logo"></div>
         </section>
 
     </div>
@@ -235,9 +249,10 @@
         <form class="container home-form">
             <input type="fname" id="fname" name="name" placeholder="Your Name" required>
             <input type="email" id="email" name="email" placeholder="Enter your Email" required>
-            <input type="text" name="parts" id="parts" placeholder="Part you need (optional)" >
+            <input type="text" name="parts" id="parts" placeholder="Part you need (optional)">
             <input type="text" name="reg" id="reg" placeholder="Your REG Plate (optional)">
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"
+                      required></textarea>
             <div class="contact-button">
                 <input type="submit" value="Submit" name="form-button">
             </div>
@@ -251,7 +266,7 @@
         <div class="row supplier-row">
             <div class="col-sm-12 col-md-6 supplier-container">
                 <div class="supplier-content">
-                    <h2>Become a  supplier!</h2>
+                    <h2>Become a supplier!</h2>
                     <h3>Spare Car Part wants you on their books</h3>
                     <a href="#">Learn more</a>
                 </div>

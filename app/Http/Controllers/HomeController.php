@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Make;
+use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -132,5 +133,16 @@ class HomeController extends Controller
             'Content-Type: application/json',
             'X-Correlation-Id: string',
         ];
+    }
+
+    public function getSpareParts($id) {
+        try {
+            $make = Make::whereHas('spareParts')->with(['spareParts'])->whereId($id)->first();
+            $spare_parts = $make->spareParts;
+            return view('frontend.spare_parts', compact('spare_parts'));
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
     }
 }

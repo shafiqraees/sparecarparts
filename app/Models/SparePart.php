@@ -14,4 +14,9 @@ class SparePart extends Model
     public function car() {
         return $this->belongsTo( Car::class);
     }
+
+//    public function make()
+//    {
+//        return $this->hasOneThrough(Make::class, Car::class);
+//    }
 }

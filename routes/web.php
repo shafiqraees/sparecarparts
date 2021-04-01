@@ -24,6 +24,7 @@ Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/vehicel/detai', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
 Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findModel'])->name('find.model');
+Route::get('car/spareparts/{make_id}', [\App\Http\Controllers\HomeController::class, 'getSpareParts']);
 
 Auth::routes();
 Route::group([ 'prefix' => 'admin'], function () {
