@@ -194,7 +194,7 @@
                     <img src="{{asset('public/frontend/assets/img/brand9.png')}}" alt="">
                     <img src="{{asset('public/frontend/assets/img/brand10.png')}}" alt="">
                     <img src="{{asset('public/frontend/assets/img/brand11.png')}}" alt="">
-            
+
         </div>
     </div>
 

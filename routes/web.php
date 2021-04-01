@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\SparePartsController;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.home');
+//Route::get('admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/vehicel/detai', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
 Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findModel'])->name('find.model');

@@ -7,7 +7,7 @@
 
     <meta name="author" content="PIXINVENT">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'APPOne') }}</title>
+    <title>{{ config('app.name', 'SpareCarParts') }}</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
           rel="stylesheet">

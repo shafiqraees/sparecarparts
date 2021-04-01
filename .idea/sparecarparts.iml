@@ -123,5 +123,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="wearestartpoint-custom-nitrous-dev-897fc35f34d3" />
+    <orderEntry type="module" module-name="app_one" />
   </component>
 </module>
