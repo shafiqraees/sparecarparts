@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Make;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -34,7 +35,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        try {
+            $make = Make::whereStatus('publish')->withoutTrashed()->get();
+
+            return view('frontend.index',compact('make'));
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
     }
     /**
      * Show the application dashboard.
