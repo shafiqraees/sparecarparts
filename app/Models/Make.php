@@ -11,4 +11,9 @@ class Make extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function spareParts()
+    {
+        return $this->hasManyThrough(SparePart::class, Car::class);
+    }
 }
