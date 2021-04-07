@@ -147,7 +147,7 @@ class SparePartsController extends Controller
                 if ($request->hasFile('profile_pic')){
                     UpdateImageAllSizes($request, 'spare_parts/', $sparepart->image);
                     //$path = Storage::disk('s3')->put('profiles', $request->file('profile_pic'));
-                    $path = 'car/'.$request->profile_pic->hashName();
+                    $path = 'spare_parts/'.$request->profile_pic->hashName();
                 }
                 $data = [
                     'title' => !empty($request->title) ? $request->title : $sparepart->title,
