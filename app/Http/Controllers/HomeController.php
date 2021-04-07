@@ -139,7 +139,28 @@ class HomeController extends Controller
         try {
             $make = Make::whereHas('spareParts')->with(['spareParts'])->whereId($id)->first();
             $spare_parts = $make->spareParts;
-            return view('frontend.spare_parts', compact('spare_parts'));
+            return view('frontend.sparepart.spare_parts', compact('spare_parts'));
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sparePartsDetail($id) {
+        try {
+            $spare_part = SparePart::whereId($id)->first();
+            if ($spare_part) {
+                $suggestion = SparePart::whereCarId($spare_part->car_id)->take(3)->get();
+
+                return view('frontend.sparepart.detail', compact('spare_part','suggestion'));
+            } else {
+                return Redirect::back()->withErrors([ 'Sorry Record not found.']);
+            }
         } catch ( \Exception $e) {
             DB::rollBack();
             return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);

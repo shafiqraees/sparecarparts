@@ -101,7 +101,7 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="file" name="image" class="form-control">
+                                                            <input type="file" name="profile_pic" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="text-right">

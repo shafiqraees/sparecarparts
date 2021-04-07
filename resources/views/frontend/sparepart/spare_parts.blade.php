@@ -10,11 +10,11 @@
             <div class="col-sm-4">
                 <div class="product">
                     <div class="product-image">
-                        <img src="{{Storage::disk('public')->exists('lg/'.$spare_part->image) ? Storage::disk('public')->url('lg/'.$spare_part->image) : Storage::disk('public')->url('default.png')}}" alt="">
+                        <a href="{{route('product.detail',$spare_part->id)}}"> <img src="{{Storage::disk('public')->exists('lg/'.$spare_part->image) ? Storage::disk('public')->url('lg/'.$spare_part->image) : Storage::disk('public')->url('default.png')}}" alt=""></a>
                     </div>
                     <h3>{{ $spare_part->title }}</h3>
-                    <h5>{{ $spare_part->price }}</h5>
-                    <a href="#" class="product-button">Add to Cart</a>
+                    <h5>${{ $spare_part->price }}</h5>
+                    <a href="{{route('product.detail',$spare_part->id)}}" class="product-button">Add to Cart</a>
                 </div>
             </div>
             @endforeach
