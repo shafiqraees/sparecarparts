@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Front User',
                 'email' => 'user2@gmail.com',
-                'password' =>Hash::make('12345678'),
+                'password' => Hash::make('12345678'),
                 'user_type' =>'User',
                 'profile_photo_path' =>'profiles/5fd1bcdde6728.jpeg',
                 'gender' =>'Male',

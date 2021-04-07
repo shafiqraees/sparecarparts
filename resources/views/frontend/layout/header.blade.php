@@ -12,6 +12,7 @@
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Contact Us</a></li>
         <li><a href="#">About Us</a></li>
+        <li><a href="{{route('supplier.join')}}">Become a Supplier</a></li>
         <li><a href="{{route('login')}}">Breaker Login</a></li>
     </ul>
 </nav>
