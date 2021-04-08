@@ -31,8 +31,10 @@ Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::clas
 
 Auth::routes();
 Route::group(['prefix' => 'home'], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+    Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
 });
+Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
+Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
 Route::group([ 'prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::resource('make', MakeController::class);

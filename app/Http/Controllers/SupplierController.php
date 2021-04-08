@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
+    public function index(){
+
+        return view('admin.dashboard');
+    }
+
     public function join()
     {
         return view('supplier.join');

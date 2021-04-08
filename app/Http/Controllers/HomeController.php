@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Make;
 use App\Models\SparePart;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -166,4 +167,40 @@ class HomeController extends Controller
             return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
         }
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($id);
+        DB::beginTransaction();
+        if ($user){
+            $data = [
+                'name' => !empty($request->name) ? $request->name : $user->name,
+                'email' => !empty($request->email) ? $request->email : $user->email,
+                'phone' => $request->phone,
+
+            ];
+            if(!empty($request->password)) {
+                $data['password'] = bycrpt($request->password);
+            }
+            $user->update($data);
+            DB::commit();
+            return redirect(route('profile.index', $user->id))->with('success', 'Record has been updated.');
+        }
+        return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        /*} catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }*/
+    }
+
+    function profile($id) {
+        $data = User::whereId($id)->first();
+        return view('profile', compact('data'));
+    }
+
 }
