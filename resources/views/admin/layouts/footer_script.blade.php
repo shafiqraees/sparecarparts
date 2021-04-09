@@ -119,6 +119,28 @@
 
         });
 
+        var table = $('#adminsupplier').DataTable({
+
+            processing: true,
+
+            serverSide: true,
+
+            ajax: "{{ route('admin.supplier') }}",
+
+            columns: [
+
+                {data: 'name', name: 'name'},
+                {data: 'email', name: 'email'},
+                {data: 'trade_name', name: 'supplier.trade_name'},
+                {data: 'business_type', name: 'supplier.business_type'},
+                {data: 'vehicle_parts_deal', name: 'supplier.vehicle_parts_deal'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+
+            ]
+
+        });
+
 
     });
 

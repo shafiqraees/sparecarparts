@@ -52,6 +52,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li class=" nav-item"><a href="{{route('admin.supplier')}}"><i class="la la-users"></i><span
+                                class="menu-title" data-i18n="nav.dash.main">Supplier</span></a>
+                    </li>
                     <li class=" nav-item"><a href="{{ route('logout') }}"
                                              onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">

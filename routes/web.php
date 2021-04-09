@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ModelController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\SparePartsController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\BreakerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,13 +31,15 @@ Route::get('car/spareparts/{make_id}', [\App\Http\Controllers\HomeController::cl
 Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::class, 'sparePartsDetail'])->name('product.detail');
 
 Auth::routes();
-Route::group(['prefix' => 'home'], function () {
+Route::group(['prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
 });
 Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
 Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
 Route::group([ 'prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+    Route::get('supplier', [DashboardController::class, 'supplier'])->name('admin.supplier');
+    Route::get('supplier/delete/{id}', [DashboardController::class, 'supplier'])->name('admin.supplier.destroy');
     Route::resource('make', MakeController::class);
     Route::get('make/delete/{id}', [MakeController::class,'deleteMake'])->name('make.delete');
     Route::resource('model', ModelController::class);
@@ -45,4 +48,7 @@ Route::group([ 'prefix' => 'admin'], function () {
     Route::resource('sparepart', SparePartsController::class);
     Route::get('sparepart/delete/{id}', [SparePartsController::class,'deleteSparePart'])->name('sparepart.delete');
     Route::get('car/delete/{id}', [CarController::class,'deleteCar'])->name('car.delete');
+});
+Route::group(['prefix' => 'breaker'], function () {
+    Route::get('/', [BreakerController::class, 'index'])->name('breaker.home');
 });
