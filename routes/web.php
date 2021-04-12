@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\SparePartsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BreakerController;
+use App\Http\Controllers\SalesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,7 @@ Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::cl
 Route::group([ 'prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::get('supplier', [DashboardController::class, 'supplier'])->name('admin.supplier');
+    Route::get('sales', [SalesController::class, 'sales'])->name('admin.sales');
     Route::get('supplier/delete/{id}', [DashboardController::class, 'supplier'])->name('admin.supplier.destroy');
     Route::resource('make', MakeController::class);
     Route::get('make/delete/{id}', [MakeController::class,'deleteMake'])->name('make.delete');
