@@ -17,7 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('spare_part_id');
-            $table->enum('status', ['pending', 'in_progress', 'delivered'])->default('pending');
+            $table->enum('status', ['pending', 'in_progress', 'delivered'])->default('pending')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->double('price')->nullable();
             $table->timestamps();

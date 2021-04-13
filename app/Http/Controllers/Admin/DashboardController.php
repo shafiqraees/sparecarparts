@@ -7,6 +7,8 @@ use App\Models\Make;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
@@ -47,12 +49,15 @@ class DashboardController extends Controller
                 ->addColumn('business_type', function($rst){
                     return !empty ($rst->supplier->business_type) ? $rst->supplier->business_type : "";
                 })
-                ->addColumn('vehicle_parts_deal', function($rst){
-                    return !empty ($rst->supplier->vehicle_parts_deal) ? $rst->supplier->vehicle_parts_deal : "";
+                ->addColumn('account_status', function($rst){
+                    return !empty ($rst->supplier->account_status) ? $rst->supplier->account_status : "";
                 })
 
                 ->addColumn('action', function($row){
-                    $btn = '<a href="' . route("admin.supplier.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+
+                    $btn = '<a href="' . route("admin.supplier.show", $row->id) . '" class="edit btn btn-primary btn-sm">View</a>';
+                    $btn = $btn.'<a href="' . route("admin.supplier.destroy", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -60,5 +65,58 @@ class DashboardController extends Controller
 
         }
         return view('admin.suppier.list');
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function supplierDetial($id)
+    {
+        try {
+            $data = User::whereId($id)->whereHas('supplier')->with('supplier')->first();
+
+            if ($data) {
+                return view('admin.suppier.detail',compact('data'));
+            } else {
+                return Redirect::back()->withErrors(['Sorry Record not found.']);
+            }
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['Sorry Record not found.']);
+        }
+
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function supplierEdit(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'status' => 'required',
+        ]);
+
+        try {
+        //dd($request);
+        $make = Supplier::find($id);
+        DB::beginTransaction();
+        if ($make){
+            $data = [
+                'account_status' => !empty($request->status) ? $request->status : $make->account_status,
+            ];
+            $make->update($data);
+            DB::commit();
+            return Redirect::back()->with('success', 'Status has been updated successfully.');
+        }
+        return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+        }
     }
 }

@@ -12,11 +12,33 @@
                 </div>
             </div>
             <div class="col-sm-7">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        @if(is_array(session('success')))
+                            <ul>
+                                @foreach (session('success') as $message)
+                                    <li>{{ $message }}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            {{ session('success') }}
+                        @endif
+                    </div>
+                @endif
                 <div class="single-product-dis">
                     <h2>{{$spare_part->title}}</h2>
                     <div class="price-button">
                         <h3>${{$spare_part->price}}</h3>
-                        <a href="#" class="quantity">Quantity</a>
+                        <a href="{{route('save.order',$spare_part->id)}}" class="quantity">Quantity</a>
                     </div>
                     <p>{{$spare_part->description}}</p>
                 </div>

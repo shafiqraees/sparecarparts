@@ -119,6 +119,28 @@
 
         });
 
+        var table = $('#adminssales').DataTable({
+
+            processing: true,
+
+            serverSide: true,
+
+            ajax: "{{ route('admin.sales') }}",
+
+            columns: [
+
+                {data: 'id', name: 'id'},
+                {data: 'sparePartName', name: 'spare_part.title'},
+                {data: 'price', name: 'price'},
+                {data: 'userName', name: 'user.name'},
+                {data: 'status', name: 'status'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+
+            ]
+
+        });
+
         var table = $('#adminsupplier').DataTable({
 
             processing: true,
@@ -133,7 +155,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'trade_name', name: 'supplier.trade_name'},
                 {data: 'business_type', name: 'supplier.business_type'},
-                {data: 'vehicle_parts_deal', name: 'supplier.vehicle_parts_deal'},
+                {data: 'account_status', name: 'supplier.account_status'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
 

@@ -34,14 +34,17 @@ Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::clas
 Auth::routes();
 Route::group(['prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
+    Route::get('order', [SupplierController::class, 'order'])->name('supplier.order');
 });
 Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
 Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
 Route::group([ 'prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::get('supplier', [DashboardController::class, 'supplier'])->name('admin.supplier');
+    Route::get('supplier/{id}', [DashboardController::class, 'supplierDetial'])->name('admin.supplier.show');
     Route::get('sales', [SalesController::class, 'sales'])->name('admin.sales');
     Route::get('supplier/delete/{id}', [DashboardController::class, 'supplier'])->name('admin.supplier.destroy');
+    Route::post('supplier/edit/{id}', [DashboardController::class, 'supplierEdit'])->name('admin.supplier.update');
     Route::resource('make', MakeController::class);
     Route::get('make/delete/{id}', [MakeController::class,'deleteMake'])->name('make.delete');
     Route::resource('model', ModelController::class);
@@ -53,6 +56,7 @@ Route::group([ 'prefix' => 'admin'], function () {
 });
 Route::group(['prefix' => 'breaker'], function () {
     Route::get('/', [BreakerController::class, 'index'])->name('breaker.home');
+    Route::get('order/{id}', [BreakerController::class, 'orderSave'])->name('save.order');
 });
 
 Route::get('send-mail', function () {
