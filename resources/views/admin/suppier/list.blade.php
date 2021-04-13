@@ -83,7 +83,7 @@
 
                                                 <th>Buisness Type</th>
 
-                                                <th>Parts Deal</th>
+                                                <th>Account Status</th>
 
                                                 <th>Created At</th>
 

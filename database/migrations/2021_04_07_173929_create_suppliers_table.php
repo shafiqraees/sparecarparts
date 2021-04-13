@@ -34,7 +34,7 @@ class CreateSuppliersTable extends Migration
             $table->string('vehicle_parts_deal');
             $table->string('ebay_account_username')->nullable();
             $table->string('about')->nullable();
-
+            $table->enum('account_status', ['pending', 'aproved', 'cancelled'])->default('pending')->nullable();;
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
