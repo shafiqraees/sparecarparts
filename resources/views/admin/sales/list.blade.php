@@ -8,7 +8,8 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a>
+                                <li class="breadcrumb-item">
+                                    <a href="{{route('admin.home')}}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active">sales
                                 </li>

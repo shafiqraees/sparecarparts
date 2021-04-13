@@ -34,6 +34,7 @@ Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::clas
 Auth::routes();
 Route::group(['prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
+    Route::get('order', [SupplierController::class, 'order'])->name('supplier.order');
 });
 Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
 Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
