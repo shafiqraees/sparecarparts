@@ -15,6 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID', null),
+    'TWILIO_AUTH_TOKEN'=> env('TWILIO_ACCOUNT_SID', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

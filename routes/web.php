@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MakeController;
@@ -9,6 +8,7 @@ use App\Http\Controllers\Admin\SparePartsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BreakerController;
 use App\Http\Controllers\SalesController;
+use Twilio\Rest\Client;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,4 +53,45 @@ Route::group([ 'prefix' => 'admin'], function () {
 });
 Route::group(['prefix' => 'breaker'], function () {
     Route::get('/', [BreakerController::class, 'index'])->name('breaker.home');
+});
+
+Route::get('send-mail', function () {
+    $data = [];
+    \Illuminate\Support\Facades\Mail::send('email.message', $data, function($message) use ($data) {
+        $message->to('jk@gmail.com', '')->subject
+        ("Testing email by Spareparts");
+        $message->from('admin@admin.com','Spareparts');
+    });
+});
+
+Route::get('send-twilio-sms', function () {
+
+    $account_sid = config("app.TWILIO_ACCOUNT_SID");
+    $auth_token = config("app.TWILIO_AUTH_TOKEN");
+// In production, these should be environment variables. E.g.:
+// $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
+
+// A Twilio number you own with SMS capabilities
+//    $twilio_number = "+15017122661";
+
+    $client = new Client($account_sid, $auth_token);
+
+    $client->messages->create(
+    // Where to send a text message (your cell phone?)
+        '+923002656488',
+        array(
+            'from' => '+18508765040',
+            'body' => 'I sent this message in under 10 minutes!'
+        )
+    );
+//    $sid = config("app.TWILIO_ACCOUNT_SID");
+//    $token = config("app.TWILIO_AUTH_TOKEN");
+//    $twilio = new Client($sid, $token);
+//
+//    $message = $twilio->messages
+//        ->create("+923002656488", // to
+//            ["body" => "Hi there!", "from" => "+18508765040"]
+//        );
+//
+//    print($message->sid);
 });
