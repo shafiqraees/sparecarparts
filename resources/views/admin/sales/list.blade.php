@@ -9,7 +9,12 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
+                                    @if(auth()->user()->user_type === 'Admin')
                                     <a href="{{route('admin.home')}}">Home</a>
+                                    @endif
+                                        @if(auth()->user()->user_type === 'Supplier')
+                                            <a href="{{route('supplier.home')}}">Home</a>
+                                        @endif
                                 </li>
                                 <li class="breadcrumb-item active">sales
                                 </li>

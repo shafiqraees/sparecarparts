@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Customer
 {
@@ -16,6 +17,9 @@ class Customer
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user() &&  Auth::user()->user_type == "User") {
+            return $next($request);
+        }
+        return redirect('/');
     }
 }

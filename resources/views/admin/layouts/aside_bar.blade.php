@@ -1,7 +1,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true">
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                @if(auth()->user()->user_type === 'Admin' || auth()->user()->user_type === 'Supplier')
+                @if(auth()->user()->user_type === 'Supplier')
                     <li class=" nav-item"><a href="{{route('supplier.home')}}"><i class="la la-home"></i><span
                                 class="menu-title" data-i18n="nav.dash.main">Dashboard</span></a>
                     </li>

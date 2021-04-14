@@ -56,7 +56,7 @@ class BreakerController extends Controller
      */
     public function orderSave(Request $request,$id)
     {
-        try {
+        //try {
             $user = \Auth::user();
             $spare = SparePart::find($id);
             DB::beginTransaction();
@@ -66,12 +66,18 @@ class BreakerController extends Controller
                 'price' => $spare->price,
             ];
             Sale::Create($data);
+        /*$data = [];
+        \Mail::send('email.message', $data, function($message) use ($data) {
+            $message->to('jk@gmail.com', '')->subject
+            ("Testing email by Spareparts");
+            $message->from('admin@admin.com','Spareparts');
+        });*/
             DB::commit();
             return Redirect::back()->with('success', 'Order Submitted successfully.');
 /*            return redirect(route('make.index'))->with('success', 'Make inserted successfully.');*/
-        } catch ( \Exception $e) {
+        /*} catch ( \Exception $e) {
             DB::rollBack();
             return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
-        }
+        }*/
     }
 }
