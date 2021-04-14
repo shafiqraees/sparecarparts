@@ -66,12 +66,12 @@ class BreakerController extends Controller
                 'price' => $spare->price,
             ];
             Sale::Create($data);
-        /*$data = [];
+        $data = [];
         \Mail::send('email.message', $data, function($message) use ($data) {
             $message->to('jk@gmail.com', '')->subject
             ("Testing email by Spareparts");
             $message->from('admin@admin.com','Spareparts');
-        });*/
+        });
             DB::commit();
             return Redirect::back()->with('success', 'Order Submitted successfully.');
 /*            return redirect(route('make.index'))->with('success', 'Make inserted successfully.');*/
