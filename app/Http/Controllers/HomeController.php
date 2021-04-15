@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Make;
 use App\Models\SparePart;
 use App\Models\User;
@@ -24,8 +25,8 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->url = env('DVLA_API_URL', '');
-        $this->key = env('DVLA_API_KEY', '');
+        $this->url = config('app.DVLA_API_URL');
+        $this->key = config('app.DVLA_API_KEY');
 
         $this->url .= $this->path;
     }
@@ -46,6 +47,28 @@ class HomeController extends Controller
             return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
         }
     }
+
+
+
+    /**
+     * Show the car spareparts.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getCarSpareParts()
+    {
+        try {
+//            dd(\request('registration_number'));
+            $cars = Car::search(\request('registration_number'))->with(['spareParts'])->first();
+            $spare_parts = $cars->spareParts;
+
+            return view('frontend.sparepart.spare_parts', compact('spare_parts'));
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -97,7 +120,6 @@ class HomeController extends Controller
     protected function makeRequest($queryArray){
 
         try{
-            //dd($queryArray);
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

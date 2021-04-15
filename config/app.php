@@ -18,6 +18,9 @@ return [
     'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID', null),
     'TWILIO_AUTH_TOKEN'=> env('TWILIO_ACCOUNT_SID', null),
 
+    'DVLA_API_URL' => env('DVLA_API_URL', ''),
+    'DVLA_API_KEY' => env('DVLA_API_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

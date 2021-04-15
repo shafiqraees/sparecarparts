@@ -18,4 +18,14 @@ class Car extends Model
     public function Make() {
         return $this->belongsTo(Make::class);
     }
+
+    public function spareParts() {
+        return $this->hasMany(SparePart::class);
+    }
+
+    public function scopeSearch($query, $keywords)
+    {
+        return $query
+            ->where('registration', 'like', "%" . $keywords . "%");
+    }
 }

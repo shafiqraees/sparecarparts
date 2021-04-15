@@ -23,7 +23,7 @@
                     <h3>Month Of First Registration: {{$data['monthOfFirstRegistration']}}</h3>
                     <h3>Is this the correct vehicle?</h3>
                     <div class="approve-buttons">
-                        <a class="yes-button" href="#" >Yes</a>
+                        <a class="yes-button" href="{{ url('find/car/spareparts/?registration_number='. $data['registrationNumber']) }}" >Yes</a>
                         <a class="no-button" href="#">No</a>
                     </div>
                 </div>
