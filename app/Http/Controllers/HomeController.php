@@ -102,7 +102,7 @@ class HomeController extends Controller
                     $message = $json_file['errors'][0]['detail'];
                     return Redirect::back()->withErrors(['error', $message]);
                 } else {
-                    return redirect(route('vehicle.detail', $queryArray));
+                    return redirect(route('vehicle.detail',$request->registrationNumber, $queryArray));
                 }
             } else {
                 return Redirect::back()->withErrors(['error', 'Sorry record not found']);
