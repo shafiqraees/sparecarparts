@@ -59,9 +59,11 @@ class HomeController extends Controller
     {
         try {
 //            dd(\request('registration_number'));
+            $spare_parts = [];
             $cars = Car::search(\request('registration_number'))->with(['spareParts'])->first();
-            $spare_parts = $cars->spareParts;
-
+            if(!empty($cars)) {
+                $spare_parts = $cars->spareParts;
+            }
             return view('frontend.sparepart.spare_parts', compact('spare_parts'));
         } catch ( \Exception $e) {
             DB::rollBack();
