@@ -31,6 +31,8 @@ Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findMod
 Route::get('/find/car/spareparts', [App\Http\Controllers\HomeController::class, 'getCarSpareParts'])->name('find.model.spareparts');
 Route::get('car/spareparts/{make_id}', [\App\Http\Controllers\HomeController::class, 'getSpareParts']);
 Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::class, 'sparePartsDetail'])->name('product.detail');
+Route::get('add-to-cart/{id}', [\App\Http\Controllers\HomeController::class, 'addToCart'])->name('add.to.cart');
+Route::get('cart/items', [\App\Http\Controllers\HomeController::class, 'cartItems'])->name('cart.items');
 
 Auth::routes();
 Route::group(['middleware' => ['auth', 'supplier'],'prefix' => 'supplier'], function () {
@@ -57,7 +59,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
 });
 Route::group(['middleware' => ['auth', 'customer'],'prefix' => 'breaker'], function () {
     Route::get('/', [BreakerController::class, 'index'])->name('breaker.home');
-    Route::get('order/{id}', [BreakerController::class, 'orderSave'])->name('save.order');
+    Route::post('order/products', [BreakerController::class, 'orderSave'])->name('save.order');
 });
 
 Route::get('send-mail', function () {

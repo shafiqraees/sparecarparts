@@ -38,7 +38,7 @@
                     <h2>{{$spare_part->title}}</h2>
                     <div class="price-button">
                         <h3>${{$spare_part->price}}</h3>
-                        <a href="{{route('save.order',$spare_part->id)}}" class="quantity">Quantity</a>
+                        <a href="{{route('add.to.cart',$spare_part->id)}}" class="quantity">Add to cart</a>
                     </div>
                     <p>{{$spare_part->description}}</p>
                 </div>

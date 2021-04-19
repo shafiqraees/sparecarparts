@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class BreakerController extends Controller
 {
@@ -22,8 +23,8 @@ class BreakerController extends Controller
     {
 
         //try {
-            $user = \Auth::user();
-            return view('frontend.customer.detail',compact('user'));
+        $user = \Auth::user();
+        return view('frontend.customer.detail',compact('user'));
 
         /*} catch ( \Exception $e) {
             return Redirect::back()->withErrors(['error', 'Sorry something went wrong']);
@@ -54,30 +55,41 @@ class BreakerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function orderSave(Request $request,$id)
+    public function orderSave(Request $request)
     {
-        //try {
+        //dd($request);
+
+        try {
             $user = \Auth::user();
-            $spare = SparePart::find($id);
             DB::beginTransaction();
-            $data = [
-                'user_id' => $user->id,
-                'spare_part_id' => $id,
-                'price' => $spare->price,
-            ];
-            Sale::Create($data);
-        $data = [];
-        \Mail::send('email.message', $data, function($message) use ($data) {
-            $message->to('jk@gmail.com', '')->subject
-            ("Testing email by Spareparts");
-            $message->from('admin@admin.com','Spareparts');
-        });
+
+            foreach ($request->product_id as $p_id) {
+
+                $product_exist = SparePart::find($p_id);
+                if ($product_exist) {
+                    $data = [
+                        'user_id' => $user->id,
+                        'spare_part_id' => $p_id,
+                        'price' => $product_exist->price * $request->$p_id,
+                        'quantity' => $request->$p_id,
+                    ];
+                    Sale::Create($data);
+                }
+            }
+            Session::forget('cart');
+            $data = [];
+            \Mail::send('email.message', $data, function($message) use ($data) {
+                $message->to('jk@gmail.com', '')->subject
+                ("Testing email by Spareparts");
+                $message->from('admin@admin.com','Spareparts');
+            });
             DB::commit();
-            return Redirect::back()->with('success', 'Order Submitted successfully.');
-/*            return redirect(route('make.index'))->with('success', 'Make inserted successfully.');*/
-        /*} catch ( \Exception $e) {
+           // return Redirect::back()->with('success', 'Order Submitted successfully.');
+
+             return redirect(route('home'))->with('success', 'Order sumitted successfully.');
+        } catch ( \Exception $e) {
             DB::rollBack();
             return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
-        }*/
+        }
     }
 }

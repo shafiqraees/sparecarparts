@@ -20,6 +20,7 @@ class CreateSalesTable extends Migration
             $table->enum('status', ['pending', 'in_progress', 'delivered'])->default('pending')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->double('price')->nullable();
+            $table->string('quantity')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

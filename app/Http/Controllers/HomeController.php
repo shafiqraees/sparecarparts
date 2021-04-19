@@ -178,6 +178,7 @@ class HomeController extends Controller
      */
     public function sparePartsDetail($id) {
         try {
+
             $spare_part = SparePart::whereId($id)->first();
             if ($spare_part) {
                 $suggestion = SparePart::whereCarId($spare_part->car_id)->take(3)->get();
@@ -185,6 +186,76 @@ class HomeController extends Controller
                 return view('frontend.sparepart.detail', compact('spare_part','suggestion'));
             } else {
                 return Redirect::back()->withErrors([ 'Sorry Record not found.']);
+            }
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addToCart($id) {
+        try {
+            $product = SparePart::find($id);
+            if ($product) {
+                $cart = session()->get('cart');
+                // if cart is empty then this the first product
+                if(!$cart) {
+                    $cart = [
+                        $id => [
+                            "title" => $product->title,
+                            "product_id" => $product->id,
+                            "quantity" => 1,
+                            "price" => $product->price,
+                            "image" => $product->image
+                        ]
+                    ];
+                    session()->put('cart', $cart);
+                    return redirect()->back()->with('success', 'Product added to cart successfully!');
+                }
+                // if cart not empty then check if this product exist then increment quantity
+                if(isset($cart[$id])) {
+                    $cart[$id]['quantity']++;
+                    session()->put('cart', $cart);
+                    return redirect()->back()->with('success', 'Product added to cart successfully!');
+                }
+                // if item not exist in cart then add to cart with quantity = 1
+                $cart[$id] = [
+                    "product_id" => $product->id,
+                    "title" => $product->title,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "image" => $product->image
+                ];
+                session()->put('cart', $cart);
+
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+            } else {
+                return Redirect::back()->withErrors([ 'Sorry Record not found.']);
+            }
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cartItems() {
+        try {
+            $cart = session()->get('cart');
+            if ($cart) {
+                return view('frontend.customer.cart_items', compact('cart'));
+            } else {
+                return Redirect::back()->withErrors([ 'Sorry Record not found.']);
+                //return view('frontend.customer.cart_items');
             }
         } catch ( \Exception $e) {
             DB::rollBack();

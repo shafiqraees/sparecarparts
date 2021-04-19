@@ -15,5 +15,8 @@
         <li><a href="{{route('supplier.join')}}">Become a Supplier</a></li>
         <li><a href="{{route('login')}}">Breaker Login</a></li>
     </ul>
+    <div>
+        <a href="{{route('cart.items')}}"><i class="bi bi-cart"><span class='counter'>7</span></i></a>
+    </div>
 </nav>
 <!-- End Header -->
