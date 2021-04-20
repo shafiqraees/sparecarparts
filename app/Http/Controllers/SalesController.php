@@ -17,10 +17,13 @@ class SalesController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Sale::all();
+            $data = Sale::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
                 ->addColumn('sparePartName', function($rst){
                     return !empty ($rst->spare_part->title) ? $rst->spare_part->title : "";
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);

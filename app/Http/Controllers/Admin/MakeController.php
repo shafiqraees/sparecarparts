@@ -21,10 +21,13 @@ class MakeController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Make::all();
+            $data = Make::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("make.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn = $btn.'<a href="' . route("make.delete", $row->id) . '" class="delete btn btn-danger btn-sm">Delete</a>';

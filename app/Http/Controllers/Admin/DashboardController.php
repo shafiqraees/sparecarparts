@@ -40,10 +40,13 @@ class DashboardController extends Controller
     public function supplier(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::whereUserType('Supplier')->with('supplier')->get();
+            $data = User::whereUserType('Supplier')->with('supplier')->orderBy('created_at', 'desc')->get();
             return \Yajra\DataTables\DataTables::of($data)
                 ->addColumn('trade_name', function($rst){
                     return !empty ($rst->supplier->trade_name) ? $rst->supplier->trade_name : "";
+                })
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
                 })
 
                 ->addColumn('business_type', function($rst){
