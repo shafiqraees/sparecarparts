@@ -23,10 +23,13 @@ class ModelController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = CarModel::all();
+            $data = CarModel::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("model.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn = $btn.'<a href="' . route("model.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';

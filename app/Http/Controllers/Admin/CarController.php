@@ -23,7 +23,7 @@ class CarController extends Controller
 
         if ($request->ajax()) {
 
-            $data = Car::all();
+            $data = Car::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
@@ -34,6 +34,9 @@ class CarController extends Controller
                 ->addColumn('Make', function($action){
                     return empty ($action->Make->name) ? $action->Make->name : $action->Make->name;
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("car.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';

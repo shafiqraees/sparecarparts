@@ -22,13 +22,16 @@ class SparePartsController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = SparePart::all();
+            $data = SparePart::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('carName', function($rst){
                     return empty ($rst->car->title) ? $rst->car->title : $rst->car->title;
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="' . route("sparepart.edit", $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
