@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarModel;
 use App\Models\Make;
 use App\Models\SparePart;
 use App\Models\User;
@@ -297,5 +298,71 @@ class HomeController extends Controller
         $data = User::whereId($id)->first();
         return view('profile', compact('data'));
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function findParts() {
 
+        try {
+            $make = Make::whereStatus('publish')->withoutTrashed()->get();
+            $model = CarModel::whereStatus('publish')->whereNull('deleted_at')->get();
+
+            return view('frontend.vehicle.find-a-part', compact('make','model'));
+
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function partsSearch(Request $request) {
+
+
+        try {
+            $car = Car::orderBy('id','desc');
+            if ($request->make) {
+                $car = $car->where('make_id',$request->make);
+            }
+            if ($request->model) {
+                $car = $car->where('car_model_id',$request->model);
+            }
+            if ($request->year) {
+                $car = $car->where('year', 'like', '%' . $request->year . '%');
+            }
+            if ($request->body2) {
+                $car = $car->where('body', 'like', '%' . $request->body2 . '%');
+            }
+            if ($request->engine2) {
+                $car = $car->where('engine', 'like', '%' . $request->engine2 . '%');
+            }
+            if ($request->Fuel2) {
+                $car = $car->where('fuel', 'like', '%' . $request->Fuel2 . '%');
+            }
+            if ($request->trim2) {
+                $car = $car->where('trim', 'like', '%' . $request->trim2 . '%');
+            }
+            if ($request->gearbox2) {
+                $car = $car->where('gearbox', 'like', '%' . $request->gearbox2 . '%');
+            }
+            $car_ids = $car->orderBy('id','desc')->pluck('id');
+            if ($car_ids){
+                $spare_parts = SparePart::whereStatus('publish')->whereIn('id',$car_ids)->get();
+                return view('frontend.sparepart.spare_parts', compact('spare_parts'));
+            } else {
+                return Redirect::back()->withErrors([ 'No record found.']);
+            }
+
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
 }

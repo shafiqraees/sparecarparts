@@ -29,6 +29,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/vehicel/detai/{reg_number}', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
 Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findModel'])->name('find.model');
 Route::get('/find/car/spareparts', [App\Http\Controllers\HomeController::class, 'getCarSpareParts'])->name('find.model.spareparts');
+Route::get('find-a-part', [App\Http\Controllers\HomeController::class, 'findParts'])->name('find.parts');
+Route::get('parts/search', [App\Http\Controllers\HomeController::class, 'partsSearch'])->name('partsfilter');
 Route::get('car/spareparts/{make_id}', [\App\Http\Controllers\HomeController::class, 'getSpareParts']);
 Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::class, 'sparePartsDetail'])->name('product.detail');
 Route::get('add-to-cart/{id}', [\App\Http\Controllers\HomeController::class, 'addToCart'])->name('add.to.cart');

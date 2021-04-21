@@ -29,6 +29,10 @@ class CreateCarsTable extends Migration
             $table->string('fuel')->nullable();
             $table->text('description');
             $table->text('remarks')->nullable();
+            $table->string('engine')->nullable();
+            $table->string('body')->nullable();
+            $table->string('trim')->nullable();
+            $table->string('gearbox')->nullable();
             $table->text('image')->nullable();
             $table->enum('status', ['publish', 'unPublish'])->default('Publish');
             $table->timestamps();

@@ -93,6 +93,10 @@ class CarController extends Controller
                 'transmission' => $request->transmission,
                 'fuel' => $request->fuel,
                 'description' => $request->description,
+                'engine' => $request->engine,
+                'body' => $request->body,
+                'trim' => $request->trim,
+                'gearbox' => $request->gearbox,
                 'image' => empty($path) ? 'defaul.png' : $path,
             ];
             Car::Create($data);

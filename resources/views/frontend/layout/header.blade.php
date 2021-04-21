@@ -8,7 +8,7 @@
         <i class="bi bi-list"></i>
     </label>
     <ul>
-        <li><a class="active" href="#">Find a Part</a></li>
+        <li><a class="active" href="{{route('find.parts')}}">Find a Part</a></li>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Contact Us</a></li>
         <li><a href="#">About Us</a></li>
