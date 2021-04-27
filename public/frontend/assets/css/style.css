@@ -87,6 +87,8 @@ nav .menu-btn i {
 footer nav {
     border: solid 2px #14548b;
     border-bottom: none;
+    height: 90px;
+    margin-top: auto;
 }
 @media (max-width: 1200px) {
     .signup-content {
@@ -166,6 +168,7 @@ nav i {
     font-size: 30px;
     font-weight: 700;
 }
+
 /*--------------------------------------------------------------
 # Hero section
 --------------------------------------------------------------*/
@@ -619,9 +622,7 @@ Media Qurries
         width: 100%;
         float: none;
     }
-    nav {
-        padding: 0 10px 0 10px;
-    }
+
     .logo img {
         vertical-align: auto !important;
     }
@@ -776,6 +777,36 @@ Media Qurries
     }
     .dash-board {
         display: none !important;
+    }
+    .contact-form form input {
+        width: 100% !important;
+        margin: 10px 0px !important;
+    }
+    .contact-info {
+        display: flex;
+        flex-direction: column !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        max-width: 100%;
+    }
+    .contact-item {
+        flex: 0 0 80% !important;
+        max-width: 80% !important;
+        padding: 20px;
+    }
+    .who-we-are,
+    .what-we-do {
+        text-align: center !important;
+    }
+    .who-we-are-image,
+    .what-we-do-image {
+        text-align: center !important;
+    }
+    .what-we-do-container {
+        display: flex;
+        flex-direction: column-reverse !important;
     }
 }
 @media only screen and (max-width: 1200px) {
@@ -1138,6 +1169,9 @@ input[name="search-part"] {
 .select-product {
     height: 40vh;
     padding-top: 5%;
+}
+.choose-part-container {
+    height: 100vh;
 }
 .upload-image {
     height: 55vh;
@@ -2353,4 +2387,71 @@ input[name="Fuel2"] {
 }
 .submit-section input {
     padding: 6px 35px !important;
+}
+.contact-main-container {
+    text-align: center;
+    margin: 3% auto;
+    height: 100%;
+}
+.contact-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    max-width: 100%;
+    margin: 3% 0%;
+}
+.contact-item {
+    flex: 0 0 33.33333333%;
+    max-width: 33.33333333%;
+    padding: 20px;
+}
+.contact-item i {
+    font-size: 50px;
+    color: #14548b;
+}
+.contact-item h3,
+.contact-item p {
+    font-family: "Poppins", sans-serif;
+}
+.contact-form form input {
+    border: solid 2px #14548b;
+    border-radius: 30px;
+    width: 49%;
+}
+
+.contact-form {
+    width: 70%;
+    margin: auto;
+    padding: 5% 0%;
+}
+.contact-form form input[type="submit"] {
+    border: none !important;
+    width: 30%;
+}
+.about-hero {
+    text-align: center;
+}
+.about-hero h1 {
+    font-weight: bold;
+    font-size: 50px;
+    padding: 3% 0%;
+}
+.who-we-are,
+.what-we-do {
+    padding: 4% 0%;
+}
+.who-we-are-image img,
+.what-we-do img {
+    height: 90%;
+    width: 90%;
+    border-radius: 10px;
+}
+.who-we-are-image {
+    text-align: end;
+}
+.what-we-do {
+    height: 70vh;
 }

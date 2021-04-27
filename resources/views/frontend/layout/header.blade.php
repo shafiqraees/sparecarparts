@@ -10,8 +10,8 @@
     <ul>
         <li><a class="active" href="{{route('find.parts')}}">Find a Part</a></li>
         <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="{{route('contact')}}">Contact Us</a></li>
+        <li><a href="{{route('about')}}">About Us</a></li>
         <li><a href="{{route('supplier.join')}}">Become a Supplier</a></li>
         <li><a href="{{route('login')}}">Breaker Login</a></li>
     </ul>
@@ -19,4 +19,4 @@
         <a href="{{route('cart.items')}}"><i class="bi bi-cart"><span class='counter'>7</span></i></a>
     </div>
 </nav>
-<!-- End Header -->
+    <!-- End Header -->

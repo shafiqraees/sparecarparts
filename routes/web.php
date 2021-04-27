@@ -26,6 +26,8 @@ use Twilio\Rest\Client;
 Route::get('supplier/join', [SupplierController::class, 'join'])->name('supplier.join');
 Route::post('supplier/join', [SupplierController::class, 'register'])->name('supplier.register');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about');
+Route::get('contact-us', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact');
 Route::get('/vehicel/detai/{reg_number}', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
 Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findModel'])->name('find.model');
 Route::get('/find/car/spareparts', [App\Http\Controllers\HomeController::class, 'getCarSpareParts'])->name('find.model.spareparts');

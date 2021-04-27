@@ -49,7 +49,34 @@ class HomeController extends Controller
         }
     }
 
-
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function aboutUs()
+    {
+        try {
+            return view('frontend.aboutus');
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function contactUs()
+    {
+        try {
+            return view('frontend.contactus');
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
 
     /**
      * Show the car spareparts.
