@@ -30,6 +30,7 @@
         arrows: false,
         dots: false
     });
+    
 </script>
 
 

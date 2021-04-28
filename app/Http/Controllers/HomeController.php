@@ -104,12 +104,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function vehicleDetail()
+    public function vehicleDetail($id)
     {
-        $queryArray = ['registrationNumber' => 'WN67DSO'];
+        dd($id);
+        $spare_parts = [];
+        $queryArray = ['registrationNumber' => $id];
         $api_data = $this->makeRequest( $queryArray );
         $data = json_decode($api_data, true);
-        return view('frontend.vehicle.detail',compact('data'));
+        $cars = Car::search($id)->with(['spareParts'])->first();
+        if(!empty($cars)) {
+            $spare_parts = $cars->spareParts;
+        }
+        return view('frontend.vehicle.detail',compact('data','spare_parts'));
     }
 
     /**
@@ -380,9 +386,12 @@ class HomeController extends Controller
                 $car = $car->where('gearbox', 'like', '%' . $request->gearbox2 . '%');
             }
             $car_ids = $car->orderBy('id','desc')->pluck('id');
+            $data = $car->orderBy('id','desc')->first()->toArray();
+            //dd($data);
             if ($car_ids){
                 $spare_parts = SparePart::whereStatus('publish')->whereIn('id',$car_ids)->get();
-                return view('frontend.sparepart.spare_parts', compact('spare_parts'));
+                //return view('frontend.sparepart.spare_parts', compact('spare_parts'));
+                return view('frontend.vehicle.detail',compact('data','spare_parts'));
             } else {
                 return Redirect::back()->withErrors([ 'No record found.']);
             }
