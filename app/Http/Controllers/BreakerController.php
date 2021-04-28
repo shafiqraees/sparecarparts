@@ -7,7 +7,9 @@ use App\Models\Make;
 use App\Models\RequestOrder;
 use App\Models\Sale;
 use App\Models\SparePart;
+use App\Models\SparePartTypes;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -23,13 +25,13 @@ class BreakerController extends Controller
     public function index(Request $request)
     {
 
-        //try {
+        try {
         $user = \Auth::user();
-        return view('frontend.customer.detail',compact('user'));
+        return view('customer.dashboard',compact('user'));
 
-        /*} catch ( \Exception $e) {
+        } catch ( \Exception $e) {
             return Redirect::back()->withErrors(['error', 'Sorry something went wrong']);
-        }*/
+        }
 
     }
 
@@ -138,36 +140,32 @@ class BreakerController extends Controller
     public function requestOrder(Request $request)
     {
         //dd($request);
-
         try {
             $user = \Auth::user();
             DB::beginTransaction();
 
-            foreach ($request->product_id as $p_id) {
-
-                $product_exist = SparePart::find($p_id);
-                if ($product_exist) {
-                    $data = [
-                        'user_id' => $user->id,
-                        'spare_part_id' => $p_id->spare_part_id,
-                        'spare_part_type_id' => $p_id->spare_part_type_id,
-                    ];
-                    RequestOrder::Create($data);
-                }
+            $product_exist = SparePartTypes::find($request->id);
+            if ($product_exist) {
+                $data_body = [
+                    'user_id' => $user->id,
+                    'spare_part_type_id' => $request->id,
+                ];
+                $insert = RequestOrder::Create($data_body);
+                $data = [];
+                \Mail::send('email.message', $data, function($message) use ($data) {
+                    $message->to('jk@gmail.com', '')->subject
+                    ("Testing email by Spareparts");
+                    $message->from('admin@admin.com','Spareparts');
+                });
+                DB::commit();
+                return $this->apiResponse(JsonResponse::HTTP_OK, 'data', $insert);
+            } else {
+                return $this->apiResponse(JsonResponse::HTTP_NOT_FOUND, 'message', 'Record not found');
             }
-            $data = [];
-            \Mail::send('email.message', $data, function($message) use ($data) {
-                $message->to('jk@gmail.com', '')->subject
-                ("Testing email by Spareparts");
-                $message->from('admin@admin.com','Spareparts');
-            });
-            DB::commit();
-             return Redirect::back()->with('success', 'Request Submitted successfully.');
 
-            //return redirect(route('home'))->with('success', 'Request sumitted successfully.');
         } catch ( \Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
+            return $this->apiResponse(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, 'message', $e->getMessage());
         }
     }
 }

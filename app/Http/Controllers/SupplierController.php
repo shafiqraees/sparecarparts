@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RequestOrder;
 use App\Models\Sale;
+use App\Models\SparePartTypes;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,6 +26,17 @@ class SupplierController extends Controller
     public function join()
     {
         return view('supplier.join');
+    }
+
+    public function sendOffer($id){
+        try {
+            $spare_part = SparePartTypes::find($id);
+            return view('supplier.sendoffer',compact('spare_part'));
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+
     }
 
     public function register(Request $request)
@@ -118,7 +130,9 @@ class SupplierController extends Controller
                     return $record->created_at->diffForHumans();
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="' . route("sparepart.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = '<a href="' . route("send.offer", $row->id) . '" class="edit btn btn-primary btn-sm">View</a>';
+                    $btn = $btn.'<a href="#" class="edit btn btn-danger btn-sm">Delete</a>';
+
                     return $btn;
                 })
                 ->rawColumns(['action'])

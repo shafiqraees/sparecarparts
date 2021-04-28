@@ -6,12 +6,14 @@ use App\Models\Car;
 use App\Models\CarModel;
 use App\Models\Make;
 use App\Models\SparePart;
+use App\Models\SparePartTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\JsonResponse;
 
 class HomeController extends Controller
 {
@@ -106,7 +108,7 @@ class HomeController extends Controller
      */
     public function vehicleDetail($id)
     {
-        dd($id);
+        //dd($id);
         $spare_parts = [];
         $queryArray = ['registrationNumber' => $id];
         $api_data = $this->makeRequest( $queryArray );
@@ -115,6 +117,7 @@ class HomeController extends Controller
         if(!empty($cars)) {
             $spare_parts = $cars->spareParts;
         }
+        //dd($spare_parts);
         return view('frontend.vehicle.detail',compact('data','spare_parts'));
     }
 
@@ -399,6 +402,24 @@ class HomeController extends Controller
         } catch ( \Exception $e) {
             DB::rollBack();
             return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+    public function PartTypes()
+    {
+
+        try {
+            DB::beginTransaction();
+            $userprofile = SparePartTypes::whereSparePartId(\request('id'))->get();
+            if ($userprofile) {
+                DB::commit();
+                return $this->apiResponse(JsonResponse::HTTP_OK, 'data', $userprofile);
+            } else {
+                return $this->apiResponse(JsonResponse::HTTP_NOT_FOUND, 'message', 'User profile not found');
+            }
+
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return $this->apiResponse(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, 'message', $e->getMessage());
         }
     }
 }

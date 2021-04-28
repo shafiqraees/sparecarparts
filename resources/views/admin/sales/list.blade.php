@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="card-content collpase show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table table-bordered data-table" id="adminssales">
+                                        <table class="table table-bordered data-table" id="requestorder">
 
                                             <thead>
 

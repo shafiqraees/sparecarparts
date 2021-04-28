@@ -43,6 +43,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'supplier'],'prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
     Route::get('order', [SupplierController::class, 'order'])->name('supplier.order');
+    Route::get('send/offer/{id}', [SupplierController::class, 'sendOffer'])->name('send.offer');
 });
 Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
 Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');

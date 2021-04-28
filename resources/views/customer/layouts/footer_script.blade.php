@@ -34,7 +34,7 @@
             ajax: "{{ route('request.order') }}",
 
             columns: [
-
+                {data: 'id', name: 'id'},
                 {data: 'title', name: 'sparePartType.title'},
                 {data: 'colour', name: 'sparePartType.colour'},
                 {data: 'status', name: 'status'},

@@ -13,7 +13,11 @@
         <li><a href="{{route('contact')}}">Contact Us</a></li>
         <li><a href="{{route('about')}}">About Us</a></li>
         <li><a href="{{route('supplier.join')}}">Become a Supplier</a></li>
+        @if(auth()->check())
+        <li><a href="{{route('breaker.home')}}">{{auth()->user()->name}}</a></li>
+        @else
         <li><a href="{{route('login')}}">Breaker Login</a></li>
+        @endif
     </ul>
     <div>
         <a href="{{route('cart.items')}}"><i class="bi bi-cart"><span class='counter'>7</span></i></a>

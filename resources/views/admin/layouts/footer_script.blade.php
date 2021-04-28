@@ -127,7 +127,7 @@
 
         });
 
-        var table = $('#adminssales').DataTable({
+        var table = $('#requestorder').DataTable({
 
             processing: true,
 
@@ -138,9 +138,9 @@
             columns: [
 
                 {data: 'id', name: 'id'},
-                {data: 'sparePartName', name: 'spare_part.title'},
-                {data: 'price', name: 'price'},
-                {data: 'userName', name: 'user.name'},
+                {data: 'title', name: 'sparePartType.title'},
+                {data: 'name', name: 'user.name'},
+                {data: 'colour', name: 'sparePartType.colour'},
                 {data: 'status', name: 'status'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
