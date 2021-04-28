@@ -61,8 +61,10 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('sparepart/delete/{id}', [SparePartsController::class,'deleteSparePart'])->name('sparepart.delete');
     Route::get('car/delete/{id}', [CarController::class,'deleteCar'])->name('car.delete');
 });
-Route::group(['middleware' => ['auth', 'customer'],'prefix' => 'breaker'], function () {
+Route::group(['middleware' => ['auth', 'customer'],'prefix' => 'customer'], function () {
     Route::get('/', [BreakerController::class, 'index'])->name('breaker.home');
+    Route::get('requested/order', [BreakerController::class, 'requestedOrder'])->name('request.order');
+    Route::post('request/order', [BreakerController::class, 'requestOrder'])->name('store.request.order');
     Route::post('order/products', [BreakerController::class, 'orderSave'])->name('save.order');
 });
 

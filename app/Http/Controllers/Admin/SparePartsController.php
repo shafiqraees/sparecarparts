@@ -195,4 +195,6 @@ class SparePartsController extends Controller
             return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
         }
     }
+
+
 }

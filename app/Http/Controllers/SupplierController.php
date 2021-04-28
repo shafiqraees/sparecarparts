@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RequestOrder;
 use App\Models\Sale;
 use App\Models\Supplier;
 use App\Models\User;
@@ -97,23 +98,27 @@ class SupplierController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Sale::orderBy('created_at', 'desc')->get();
+            $data = RequestOrder::orderBy('created_at', 'desc')->get();
 
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('created_at', function ($record) {
-                    return $record->created_at->diffForHumans();
-                })
-                ->addColumn('sparePartName', function($rst){
-                    return !empty ($rst->spare_part->title) ? $rst->spare_part->title : "";
+                ->addColumn('title', function($rst){
+                    return !empty ($rst->sparePartType->title) ? $rst->sparePartType->title : "";
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
-                ->addColumn('userName', function($rst){
+                ->addColumn('name', function($rst){
                     return !empty ($rst->user->name) ? $rst->user->name : "";
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
+                ->addColumn('colour', function($rst){
+                    return !empty ($rst->sparePartType->colour) ? $rst->sparePartType->colour : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="#" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = '<a href="' . route("sparepart.delete", $row->id) . '" class="edit btn btn-danger btn-sm">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
