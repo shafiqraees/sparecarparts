@@ -30,6 +30,7 @@ class SupplierController extends Controller
 
     public function sendOffer($id){
         try {
+
             $spare_part = SparePartTypes::find($id);
             return view('supplier.sendoffer',compact('spare_part'));
         } catch ( \Exception $e) {
