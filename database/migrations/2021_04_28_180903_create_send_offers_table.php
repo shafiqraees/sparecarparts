@@ -18,16 +18,19 @@ class CreateSendOffersTable extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('reciever_id');
             $table->unsignedBigInteger('request_order_id');
+            $table->unsignedBigInteger('spare_part_type_id');
             $table->string('size')->nullable();
             $table->string('colour')->nullable();
             $table->string('price')->nullable();
             $table->text('description')->nullable();
+            $table->text('image')->nullable();
             $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('pending')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('reciever_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('request_order_id')->references('id')->on('request_orders')->onDelete('cascade');
+            $table->foreign('spare_part_type_id')->references('id')->on('spare_part_types')->onDelete('cascade');
         });
     }
 

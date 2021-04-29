@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth', 'supplier'],'prefix' => 'supplier'], func
     Route::get('/', [SupplierController::class, 'index'])->name('supplier.home');
     Route::get('order', [SupplierController::class, 'order'])->name('supplier.order');
     Route::get('send/offer/{id}', [SupplierController::class, 'sendOffer'])->name('send.offer');
+    Route::get('offers', [SupplierController::class, 'allOffers'])->name('offer.list');
+    Route::post('send/offer/{id}', [SupplierController::class, 'sendOfferStore'])->name('send.offer.store');
 });
 Route::get('profile/{user_id}', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile.index');
 Route::put('profile/update/{user_id}', [\App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
@@ -68,6 +70,7 @@ Route::group(['middleware' => ['auth', 'customer'],'prefix' => 'customer'], func
     Route::get('requested/order', [BreakerController::class, 'requestedOrder'])->name('request.order');
     Route::post('request/order', [BreakerController::class, 'requestOrder'])->name('store.request.order');
     Route::post('order/products', [BreakerController::class, 'orderSave'])->name('save.order');
+    Route::get('supplier/offers', [BreakerController::class, 'supplierOffer'])->name('supplier.offer.list');
 });
 
 Route::get('send-mail', function () {

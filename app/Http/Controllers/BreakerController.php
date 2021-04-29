@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Models\Make;
 use App\Models\RequestOrder;
 use App\Models\Sale;
+use App\Models\SendOffer;
 use App\Models\SparePart;
 use App\Models\SparePartTypes;
 use App\Models\User;
@@ -167,5 +168,41 @@ class BreakerController extends Controller
             DB::rollBack();
             return $this->apiResponse(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, 'message', $e->getMessage());
         }
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function supplierOffer(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = SendOffer::whereRecieverId(auth()->user()->id)->orderBy('created_at', 'desc')->get();
+            return \Yajra\DataTables\DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('title', function($rst){
+                    return !empty ($rst->sparePartTpe->title) ? $rst->sparePartTpe->title : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->addColumn('name', function($rst){
+                    return !empty ($rst->sender->name) ? $rst->sender->name : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
+                ->addColumn('action', function($row){
+                    $btn = '<a href="' . route("add.to.cart", $row->id) . '" class="edit btn btn-primary btn-sm">Add To Cart</a>';
+                    //$btn = $btn.'<a href="#" class="edit btn btn-danger btn-sm">Delete</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
+        }
+        return view('customer.order.offer_list');
     }
 }

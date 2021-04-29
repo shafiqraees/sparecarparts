@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RequestOrder;
 use App\Models\Sale;
+use App\Models\SendOffer;
 use App\Models\SparePartTypes;
 use App\Models\Supplier;
 use App\Models\User;
@@ -31,7 +32,8 @@ class SupplierController extends Controller
     public function sendOffer($id){
         try {
 
-            $spare_part = SparePartTypes::find($id);
+            $spare_part = RequestOrder::find($id);
+            //dd($spare_part);
             return view('supplier.sendoffer',compact('spare_part'));
         } catch ( \Exception $e) {
             DB::rollBack();
@@ -141,5 +143,86 @@ class SupplierController extends Controller
 
         }
         return view('admin.sales.list');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allOffers(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = SendOffer::whereSenderId(auth()->user()->id)->orderBy('created_at', 'desc')->get();
+            return \Yajra\DataTables\DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('title', function($rst){
+                    return !empty ($rst->sparePartTpe->title) ? $rst->sparePartTpe->title : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->addColumn('name', function($rst){
+                    return !empty ($rst->reciever->name) ? $rst->reciever->name : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
+                ->addColumn('action', function($row){
+                    $btn = '<a href="' . route("send.offer", $row->id) . '" class="edit btn btn-primary btn-sm">View</a>';
+                    $btn = $btn.'<a href="#" class="edit btn btn-danger btn-sm">Delete</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
+        }
+        return view('supplier.offer_list');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sendOfferStore(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            "price" => "required",
+            "description" => "required",
+            "colour" => "nullable",
+            "size" => "nullable",
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors(['error' => 'Required fields are empty']);
+        }
+        try {
+            $path = "profiles/default.png";
+            if($request->hasFile('image')){
+                SaveImageAllSizes($request, 'sendoffer/');
+                $path = 'sendoffer/'.$request->image->hashName();
+            }
+            $user = SendOffer::create([
+                'sender_id' => auth()->user()->id,
+                'reciever_id' => $request->reciever_id,
+                'request_order_id' => $id,
+                'spare_part_type_id' => $request->spare_part_type_id,
+                'size' => $request->size,
+                'colour' => $request->colour,
+                'price' => $request->price,
+                'description' => $request->description,
+                'image' => $path,
+            ]);
+
+            DB::commit();
+            return Redirect::back()->withSuccess(['success', 'Offer sent successfully']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted']);
+        }
     }
 }

@@ -52,7 +52,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
 
-                                        <form class="form-horizontal" action="{{route('sparepart.store')}}" method="post" enctype="multipart/form-data"  novalidate>
+                                        <form class="form-horizontal" action="{{route('send.offer.store',$spare_part->id)}}" method="post" enctype="multipart/form-data"  novalidate>
                                             @csrf
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12">
@@ -61,18 +61,25 @@
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <input type="text" name="title" class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="text" name="sparePar" class="form-control" value="{{$spare_part->sparePartType->title}}" disabled>
+                                                            <input type="hidden" name="spare_part_type_id" class="form-control" value="{{$spare_part->spare_part_type_id}}">
+                                                            <input type="hidden" name="reciever_id" class="form-control" value="{{$spare_part->user_id}}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <h5>Car
+                                                        <h5>Size
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
-                                                            <select name="car_id" id="select" required class="form-control">
-                                                                <option value="">Select Car</option>
-
-                                                            </select>
+                                                            <input type="text" name="size" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5>Colour
+                                                            <span class="required">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="colour" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>

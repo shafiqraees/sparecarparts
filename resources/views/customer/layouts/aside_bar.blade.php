@@ -8,7 +8,9 @@
             <li class=" nav-item"><a href="{{route('request.order')}}"><i class="la la-home"></i><span
                         class="menu-title" data-i18n="nav.dash.main">Requested Order</span></a>
             </li>
-
+            <li class=" nav-item"><a href="{{route('supplier.offer.list')}}"><i class="la la-home"></i><span
+                        class="menu-title" data-i18n="nav.dash.main">Supplier Offer</span></a>
+            </li>
             <li class=" nav-item"><a href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">

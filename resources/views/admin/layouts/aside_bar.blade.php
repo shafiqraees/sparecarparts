@@ -8,6 +8,9 @@
                     <li class=" nav-item"><a href="{{route('supplier.order')}}"><i class="la la-home"></i><span
                                 class="menu-title" data-i18n="nav.dash.main">Order Products</span></a>
                     </li>
+                    <li class=" nav-item"><a href="{{route('offer.list')}}"><i class="la la-home"></i><span
+                                class="menu-title" data-i18n="nav.dash.main">Offer Sent</span></a>
+                    </li>
                 @endif
                     @if(auth()->user()->user_type === 'Admin')
                         <li class=" nav-item"><a href="{{route('admin.home')}}"><i class="la la-home"></i><span
