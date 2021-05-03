@@ -68,6 +68,45 @@
             ]
 
         });
+        setInterval(function(){
+            $('.getProductData').click(function (ev) {
+                ev.preventDefault();
+                let image = $(this).data('img');
+                let id = $(this).data('id');
+                $('#item_img').attr('src', image);
+                $('#id').val(id);
+                $('#getData').modal('show');
+            });
+        }, 3000);
+
+        $("#purchase").click(function(e){
+
+            e.preventDefault();
+            let id = $('#id').val();
+            let quantity = $('#quantity').val();
+
+            $.ajax({
+                type:'POST',
+                url:"{{ route('purchase') }}",
+                data:{
+                    id: id,
+                    quantity: quantity,
+                    _token: $('meta[name="csrf-token"]').attr('content')},
+                success:function(data){
+                    alert(data.message);
+                    $('#getData').modal('hide');
+                }
+            });
+
+        });
+
+
+        // $(document).ready(function() {
+        //     $('#getProductData').on('click', function (ev) {
+        //         console.log('herer');
+        //         $('#getData').modal('show');
+        //     });
+        // });
     });
 
 </script>

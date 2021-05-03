@@ -111,4 +111,43 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="getData" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Image</h4>
+                    <img id="item_img" width="200px">
+                    <br><br>
+                    <input type="hidden" id="id">
+                    <h4>Quantity</h4>
+                    <input type="number" class="form-control" name="quantity" id="quantity">
+                </div>
+                <div class="modal-footer">
+                    <a id="purchase" class="btn btn-primary">Purchase</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@section('script')
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+    <script  type="text/javascript">
+        // $(document).ready(function() {
+        //     $('#getProductData').on('click', function (ev) {
+        //         console.log('herer');
+        //         $('#getData').modal('show');
+        //     });
+        // });
+    </script>
+@endsection
+

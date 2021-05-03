@@ -36,6 +36,7 @@ Route::get('parts/search', [App\Http\Controllers\HomeController::class, 'partsSe
 Route::get('car/spareparts/{make_id}', [\App\Http\Controllers\HomeController::class, 'getSpareParts']);
 Route::get('spareparts/detail/{id}', [\App\Http\Controllers\HomeController::class, 'sparePartsDetail'])->name('product.detail');
 Route::get('add-to-cart/{id}', [\App\Http\Controllers\HomeController::class, 'addToCart'])->name('add.to.cart');
+Route::post('purchase/', [\App\Http\Controllers\HomeController::class, 'purchase'])->name('purchase');
 Route::get('cart/items', [\App\Http\Controllers\HomeController::class, 'cartItems'])->name('cart.items');
 Route::get('parts/type', [\App\Http\Controllers\HomeController::class, 'PartTypes'])->name('parts.type');
 

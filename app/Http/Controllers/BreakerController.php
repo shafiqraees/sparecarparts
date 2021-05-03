@@ -193,9 +193,9 @@ class BreakerController extends Controller
                 ->editColumn('created_at', function ($record) {
                     return $record->created_at->diffForHumans();
                 })
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($row) {
                     $btn = '<a href="' . route("add.to.cart", $row->id) . '" class="edit btn btn-primary btn-sm">Add To Cart</a>';
-                    //$btn = $btn.'<a href="#" class="edit btn btn-danger btn-sm">Delete</a>';
+                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-href="'.route("purchase").'" data-img="'.url($row->image).'">View</a>';
 
                     return $btn;
                 })

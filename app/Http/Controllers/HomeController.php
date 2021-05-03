@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\CarModel;
 use App\Models\Make;
+use App\Models\Sale;
 use App\Models\SparePart;
 use App\Models\SparePartTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -229,6 +231,34 @@ class HomeController extends Controller
             return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
         }
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function purchase(Request $request) {
+        try {
+            $product = SparePart::find($request->id);
+            if ($product) {
+                $data = [
+                    'user_id' => Auth::user()->id,
+                    'spare_part_id' => $product->id,
+                    'status' => 'pending',
+                    "quantity" => $request->quantity,
+                    "price" => $product->price,
+                ];
+                Sale::create($data);
+                return response()->json(['message' => 'Product added successfully']);
+            } else {
+                return response()->json(['error' => 'Record not found']);
+            }
+        } catch ( \Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->withErrors([ 'Sorry Record not inserted.']);
+        }
+    }
+
     /**
      * Display the specified resource.
      *
