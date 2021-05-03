@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'customer'],'prefix' => 'customer'], func
     Route::post('request/order', [BreakerController::class, 'requestOrder'])->name('store.request.order');
     Route::post('order/products', [BreakerController::class, 'orderSave'])->name('save.order');
     Route::get('supplier/offers', [BreakerController::class, 'supplierOffer'])->name('supplier.offer.list');
+    Route::get('purchased/item', [BreakerController::class, 'purchasedItem'])->name('purchase.item.list');
 });
 
 Route::get('send-mail', function () {

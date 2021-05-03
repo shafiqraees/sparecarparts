@@ -69,6 +69,30 @@
             ]
 
         });
+
+        var table = $('#purchased_item').DataTable({
+
+            processing: true,
+
+            serverSide: true,
+
+            ajax: "{{ route('purchase.item.list') }}",
+
+            columns: [
+
+                {data: 'id', name: 'id'},
+                {data: 'title', name: 'sparePartType.title'},
+                {data: 'name', name: 'reciever.name'},
+                {data: 'colour', name: 'colour'},
+                {data: 'size', name: 'size'},
+                {data: 'price', name: 'price'},
+                {data: 'description', name: 'description'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+
+            ]
+
+        });
         setInterval(function(){
             $('.getProductData').click(function (ev) {
                 ev.preventDefault();

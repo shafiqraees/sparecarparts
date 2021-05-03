@@ -205,4 +205,41 @@ class BreakerController extends Controller
         }
         return view('customer.order.offer_list');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function purchasedItem(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = Sale::whereUserId(auth()->user()->id)->orderBy('created_at', 'desc')->get();
+            return \Yajra\DataTables\DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('title', function($rst){
+                    return !empty ($rst->spare_part->title) ? $rst->spare_part->title : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+                ->addColumn('name', function($rst){
+                    return !empty ($rst->user->name) ? $rst->user->name : "";
+                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
+                })
+
+                ->editColumn('created_at', function ($record) {
+                    return $record->created_at->diffForHumans();
+                })
+                ->addColumn('action', function($row) {
+                    $btn = '<a href="' . route("add.to.cart", $row->id) . '" class="edit btn btn-primary btn-sm">Add To Cart</a>';
+                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-href="'.route("purchase").'" data-img="'.url($row->image).'">View</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
+        }
+        return view('customer.order.purchased_item');
+    }
 }
