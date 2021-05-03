@@ -195,7 +195,7 @@ class BreakerController extends Controller
                 })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="' . route("add.to.cart", $row->id) . '" class="edit btn btn-primary btn-sm">Add To Cart</a>';
-                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-href="'.route("purchase").'" data-img="'.url($row->image).'">View</a>';
+                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-supplier_id="'.$row->reciever_id.'" data-size="'.$row->size.'"  data-colour="'.$row->colour.'" data-price="'.$row->price.'" data-description="'.$row->description.'" data-status="'.$row->status.'" data-img="'.url($row->image).'">View</a>';
 
                     return $btn;
                 })

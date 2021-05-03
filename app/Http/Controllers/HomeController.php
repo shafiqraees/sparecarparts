@@ -247,6 +247,7 @@ class HomeController extends Controller
                     'status' => 'pending',
                     "quantity" => $request->quantity,
                     "price" => $product->price,
+                    "supplier_id" => $request->supplier_id,
                 ];
                 Sale::create($data);
                 return response()->json(['message' => 'Product added successfully']);

@@ -126,8 +126,21 @@
                     <img id="item_img" width="200px">
                     <br><br>
                     <input type="hidden" id="id">
+                    <input type="hidden" id="supplier_id">
                     <h4>Quantity</h4>
                     <input type="number" class="form-control" name="quantity" id="quantity">
+                    <br>
+                    <h4>Price</h4>
+                    <input type="text" class="form-control" name="price" id="price" readonly>
+                    <br>
+                    <h4>Colour</h4>
+                    <input type="text" class="form-control" name="colour" id="colour" readonly>
+                    <br>
+                    <h4>Size</h4>
+                    <input type="text" class="form-control" name="size" id="size" readonly>
+                    <br>
+                    <h4>Description</h4>
+                    <input type="text" class="form-control" name="description" id="description" readonly>
                 </div>
                 <div class="modal-footer">
                     <a id="purchase" class="btn btn-primary">Purchase</a>

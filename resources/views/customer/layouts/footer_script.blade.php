@@ -98,7 +98,17 @@
                 ev.preventDefault();
                 let image = $(this).data('img');
                 let id = $(this).data('id');
+                let size = $(this).data('size');
+                let price = $(this).data('price');
+                let description = $(this).data('description');
+                let colour = $(this).data('colour');
+                let supplier_id = $(this).data('supplier_id');
                 $('#item_img').attr('src', image);
+                $('#size').val(size);
+                $('#price').val(price);
+                $('#description').val(description);
+                $('#colour').val(colour);
+                $('#supplier_id').val(supplier_id);
                 $('#id').val(id);
                 $('#getData').modal('show');
             });
@@ -109,6 +119,11 @@
             e.preventDefault();
             let id = $('#id').val();
             let quantity = $('#quantity').val();
+            let colour = $('#colour').val();
+            let size = $('#size').val();
+            let description = $('#description').val();
+            let price = $('#price').val();
+            let supplier_id = $('#supplier_id').val();
 
             $.ajax({
                 type:'POST',
@@ -116,6 +131,7 @@
                 data:{
                     id: id,
                     quantity: quantity,
+                    supplier_id: supplier_id,
                     _token: $('meta[name="csrf-token"]').attr('content')},
                 success:function(data){
                     toastr.success(data.message);
