@@ -11,6 +11,9 @@
             <li class=" nav-item"><a href="{{route('supplier.offer.list')}}"><i class="la la-home"></i><span
                         class="menu-title" data-i18n="nav.dash.main">Supplier Offer</span></a>
             </li>
+            <li class=" nav-item"><a href="{{route('supplier.offer.list')}}"><i class="la la-home"></i><span
+                        class="menu-title" data-i18n="nav.dash.main">Purchased Item</span></a>
+            </li>
             <li class=" nav-item"><a href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
