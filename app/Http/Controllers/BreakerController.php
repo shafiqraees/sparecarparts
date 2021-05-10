@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Make;
 use App\Models\RequestOrder;
+use App\Models\RequestOrderImage;
 use App\Models\Sale;
 use App\Models\SendOffer;
 use App\Models\SparePart;
@@ -111,7 +112,7 @@ class BreakerController extends Controller
             return \Yajra\DataTables\DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('title', function($rst){
-                    return !empty ($rst->sparePartType->title) ? $rst->sparePartType->title : "";
+                    return !empty ($rst->sparePartType->title) ? $rst->sparePartType->title : $rst->additional;
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
                 ->addColumn('colour', function($rst){
@@ -144,25 +145,46 @@ class BreakerController extends Controller
         try {
             $user = \Auth::user();
             DB::beginTransaction();
-
-            $product_exist = SparePartTypes::find($request->id);
-            if ($product_exist) {
+            $path = "profiles/default.png";
+            if($request->hasFile('image')){
                 $data_body = [
                     'user_id' => $user->id,
-                    'spare_part_type_id' => $request->id,
+                    'additional' => $request->additionalinfo,
                 ];
                 $insert = RequestOrder::Create($data_body);
+                foreach ($request->image as $file) {
+                    SaveLoopImageAllSizes($file, 'OrderRequest/');
+                    $path = 'OrderRequest/'.$file->hashName();
+                    $image_body = [
+                        'image' => $path,
+                        'request_order_id' => $insert->id,
+                    ];
+                    RequestOrderImage::Create($image_body);
+                }
+            }
+            if ($request->spare_part_type_id) {
+                foreach ($request->spare_part_type_id as $parts) {
+                    $product_exist = SparePartTypes::find($parts);
+                    if ($product_exist) {
+                        $data_body = [
+                            'user_id' => $user->id,
+                            'spare_part_type_id' => $parts,
+                        ];
+                        RequestOrder::Create($data_body);
+                    }
+                }
+
+            }
                 $data = [];
                 \Mail::send('email.message', $data, function($message) use ($data) {
                     $message->to('jk@gmail.com', '')->subject
                     ("Testing email by Spareparts");
                     $message->from('admin@admin.com','Spareparts');
                 });
+
                 DB::commit();
                 return $this->apiResponse(JsonResponse::HTTP_OK, 'data', $insert);
-            } else {
-                return $this->apiResponse(JsonResponse::HTTP_NOT_FOUND, 'message', 'Record not found');
-            }
+
 
         } catch ( \Exception $e) {
             DB::rollBack();

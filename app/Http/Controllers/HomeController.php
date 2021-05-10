@@ -116,13 +116,34 @@ class HomeController extends Controller
         $api_data = $this->makeRequest( $queryArray );
         $data = json_decode($api_data, true);
         $cars = Car::search($id)->with(['spareParts'])->first();
-        if(!empty($cars)) {
-            $spare_parts = $cars->spareParts;
-        }
         //dd($spare_parts);
-        return view('frontend.vehicle.detail',compact('data','spare_parts'));
+        return view('frontend.vehicle.detail',compact('data','cars'));
     }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function partYouNeed($id)
+    {
 
+        $data = Car::whereId($id)->with(['spareParts'])->first();
+
+        return view('frontend.vehicle.part_you_need',compact('data'));
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function partTyeYouNeed($id)
+    {
+
+        //$data = Car::whereId($id)->with(['spareParts'])->first();
+        $data = SparePartTypes::whereSparePartId($id)->get();
+       // dd($data);
+        return view('frontend.vehicle.part_types_you_need',compact('data'));
+    }
     /**
      * Show the application dashboard.
      *

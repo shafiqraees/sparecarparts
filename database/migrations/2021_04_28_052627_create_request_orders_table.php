@@ -16,7 +16,8 @@ class CreateRequestOrdersTable extends Migration
         Schema::create('request_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('spare_part_type_id');
+            $table->unsignedBigInteger('spare_part_type_id')->nullable();
+            $table->text('additional')->nullable();;
             $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('pending')->nullable();
             $table->timestamps();
             $table->softDeletes();

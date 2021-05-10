@@ -23,7 +23,11 @@
                     <h3>Month Of First Registration:  {{isset($data['monthOfFirstRegistration']) ? $data['monthOfFirstRegistration'] : ""}}</h3>
                     <h3>Is this the correct vehicle?</h3>
                     <div class="approve-buttons">
-                        <a class="yes-button" id="yes-button" href="javascript:void(0)" >Yes</a>
+                        @if(isset($cars->id))
+                        <a class="yes-button" id="yes-button" href="{{route('part.youneed',$cars->id)}}" >Yes</a>
+                        @else
+                            <a class="yes-button" id="yes-button" href="javascript:void(0)" >Yes</a>
+                        @endif
                         <a class="no-button" href="#">No</a>
                     </div>
                 </div>
@@ -31,26 +35,7 @@
         </div>
     </div>
     <!-- ======= End Hero ======= -->
-    <main class="choose-part-container" id="part_type" style="display: none">
-        {{--        <form class="container select-product" action="{{ url('find/car/spareparts/?registration_number=adasd') }}">--}}
-        <div class="search-parts">
-            <h1>Select the part you need</h1>
-            <input type="text" name="search-part" id="keyword">
-        </div>
-        <div class="input-group">
-            @isset($spare_parts)
-                @foreach($spare_parts as $part)
-                    <span class="button-checkbox input-group-btn">
-                        <button type="button" data-id="{{$part->id}}"  class="btn parts-select filter-search" data-color="primary">{{$part->title}}</button>
-                        <input type="checkbox" class="hidden" checked />
-                        </span>
-                @endforeach
-            @endisset
-        </div>
-    </main>
-    <div class="input-group" id="success_product">
 
-    </div>
     <!-- Modal HTML -->
 
 @endsection
