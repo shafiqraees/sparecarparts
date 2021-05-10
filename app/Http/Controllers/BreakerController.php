@@ -183,12 +183,13 @@ class BreakerController extends Controller
                 });
 
                 DB::commit();
-                return $this->apiResponse(JsonResponse::HTTP_OK, 'data', $insert);
+            return Redirect::back()->with('success', 'Order Submitted successfully.');
+                //return $this->apiResponse(JsonResponse::HTTP_OK, 'data', $insert);
 
 
         } catch ( \Exception $e) {
             DB::rollBack();
-            return $this->apiResponse(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, 'message', $e->getMessage());
+            return Redirect::back()->withErrors(['error', 'Sorry Record not inserted.']);
         }
     }
     /**

@@ -46,7 +46,7 @@
 
                             </div>
 
-                            <button type="submit" class="findData">Submit</button>
+                            <input type="submit" class="findData"></input>
                         </form>
                     </div>
                 </div>
