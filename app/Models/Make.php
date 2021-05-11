@@ -16,4 +16,10 @@ class Make extends Model
     {
         return $this->hasManyThrough(SparePart::class, Car::class);
     }
+
+    public function scopeSearch($query, $keywords)
+    {
+        return $query
+            ->where('name', 'like', "%" . $keywords . "%");
+    }
 }

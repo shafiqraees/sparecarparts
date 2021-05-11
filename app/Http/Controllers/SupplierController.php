@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
     public function index(){
 
         return view('admin.dashboard');
@@ -121,14 +121,6 @@ class SupplierController extends Controller
                     return !empty ($rst->sparePartType->title) ? $rst->sparePartType->title : "";
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
-                ->addColumn('name', function($rst){
-                    return !empty ($rst->user->name) ? $rst->user->name : "";
-                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
-                })
-                ->addColumn('colour', function($rst){
-                    return !empty ($rst->sparePartType->colour) ? $rst->sparePartType->colour : "";
-                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
-                })
                 ->editColumn('created_at', function ($record) {
                     return $record->created_at->diffForHumans();
                 })
@@ -210,6 +202,7 @@ class SupplierController extends Controller
                 'reciever_id' => $request->reciever_id,
                 'request_order_id' => $id,
                 'spare_part_type_id' => $request->spare_part_type_id,
+                'offer_id' => 'OFFER'.rand(111111,999999),
                 'size' => $request->size,
                 'colour' => $request->colour,
                 'price' => $request->price,

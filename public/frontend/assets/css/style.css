@@ -602,6 +602,7 @@ Media Qurries
   .find-parts-section {
     height: 800px !important;
   }
+  
   .how-it-mobile {
     display: block;
   }
@@ -804,6 +805,14 @@ Media Qurries
   .what-we-do-container {
     display: flex;
     flex-direction: column-reverse !important;
+  }
+  .add-parts-button-container {
+    flex-direction: column !important;
+    gap: 10px 0 !important;
+  }
+  .dropzone-container{
+    flex-direction: row !important;
+    justify-content: center;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -1170,9 +1179,11 @@ input[name="search-part"] {
 .select-product {
   padding: 5% 0%;
 }
-
+.upload-image{
+  padding: 0% 5%;
+}
 .upload-image {
-  height: 55vh;
+  min-height: 55vh;
 }
 .search-parts {
   padding: 2% 5%;
@@ -1227,54 +1238,65 @@ input[name="next-step"] {
   text-transform: uppercase;
   box-shadow: none;
 }
-.center {
-  border-radius: 3px;
-  background: #fff;
+.dropzone-container{
   display: flex;
-  align-items: flex-end;
-  justify-content: space-evenly;
-  flex-direction: column;
+  flex-flow: row-reverse;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
-
-.title {
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid #999;
-  text-align: center;
-}
-
-.dropzone {
-  border: 2px solid #242120;
-  width: 250px;
+.drop-zone {
+  max-width: 150px;
   height: 150px;
-  border-radius: 10px;
-  text-align: center;
+  padding: 25px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cccccc;
+  border: 2px solid #14548b;
+  border-radius: 10px;
 }
 
-.upload-icon {
-  margin: 25px;
+.drop-zone--over {
+  border-style: solid;
 }
 
-.upload-input {
-  top: -62px;
-  left: 0;
+.drop-zone__input {
+  display: none;
+}
+.drop-zone__prompt i{
+  font-size: 50px;
+  color: #14548b;
+}
+.drop-zone__prompt{
+  font-size: 14px;
+}
+.drop-zone__thumb {
   width: 100%;
   height: 100%;
-  opacity: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
 }
 
-.upload-button {
-  display: block;
-  color: #242120;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  font-weight: 700;
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  text-align: center;
 }
+
 textarea[name="additionalinfo"] {
   background-color: #0a58ca;
   opacity: 0.6;
@@ -1323,6 +1345,7 @@ textarea[name="additionalinfo"] {
 .find-parts-section {
   height: 400px;
 }
+
 .find-part-shop {
   height: 400px;
   background: #14548b;
@@ -2497,6 +2520,6 @@ input[name="Fuel2"] {
   padding: 0% 5%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 }

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class BreakerController extends Controller
 {
@@ -169,6 +170,7 @@ class BreakerController extends Controller
                         $data_body = [
                             'user_id' => $user->id,
                             'spare_part_type_id' => $parts,
+                            'request_number' => 'REQ'.rand(111111,999999),
                         ];
                         RequestOrder::Create($data_body);
                     }
@@ -208,17 +210,13 @@ class BreakerController extends Controller
                     return !empty ($rst->sparePartTpe->title) ? $rst->sparePartTpe->title : "";
                     //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
                 })
-                ->addColumn('name', function($rst){
-                    return !empty ($rst->sender->name) ? $rst->sender->name : "";
-                    //return DB::raw("SELECT * FROM 'patients' WHERE 'patients_id' = ?", $action->patient_id);
-                })
 
                 ->editColumn('created_at', function ($record) {
                     return $record->created_at->diffForHumans();
                 })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="' . route("add.to.cart", $row->id) . '" class="edit btn btn-primary btn-sm">Add To Cart</a>';
-                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-supplier_id="'.$row->reciever_id.'" data-size="'.$row->size.'"  data-colour="'.$row->colour.'" data-price="'.$row->price.'" data-description="'.$row->description.'" data-status="'.$row->status.'" data-img="'.url($row->image).'">View</a>';
+                    $btn = $btn.'<a class="btn btn-info btn-sm getProductData" data-id="'.$row->id.'" data-supplier_id="'.$row->reciever_id.'" data-size="'.$row->size.'"  data-colour="'.$row->colour.'" data-price="'.$row->price.'" data-description="'.$row->description.'" data-status="'.$row->status.'" data-img="'.Storage::disk('public')->url('xs/'.$row->image).'">View</a>';
 
                     return $btn;
                 })

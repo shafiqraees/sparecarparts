@@ -58,7 +58,7 @@
 
                 {data: 'id', name: 'id'},
                 {data: 'title', name: 'sparePartType.title'},
-                {data: 'name', name: 'reciever.name'},
+                {data: 'offer_id', name: 'offer_id'},
                 {data: 'colour', name: 'colour'},
                 {data: 'size', name: 'size'},
                 {data: 'price', name: 'price'},

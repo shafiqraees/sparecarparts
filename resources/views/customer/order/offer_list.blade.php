@@ -75,9 +75,9 @@
 
                                                 <th>No</th>
 
-                                                <th>Titile</th>
+                                                <th>Title</th>
 
-                                                <th>Supplier Name</th>
+                                                <th>Offer ID</th>
 
                                                 <th>Colour</th>
 
@@ -127,9 +127,9 @@
                     <br><br>
                     <input type="hidden" id="id">
                     <input type="hidden" id="supplier_id">
-                    <h4>Quantity</h4>
+                    {{--<h4>Quantity</h4>
                     <input type="number" class="form-control" name="quantity" id="quantity">
-                    <br>
+                    <br>--}}
                     <h4>Price</h4>
                     <input type="text" class="form-control" name="price" id="price" readonly>
                     <br>

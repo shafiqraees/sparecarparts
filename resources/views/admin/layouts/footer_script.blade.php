@@ -139,8 +139,7 @@
 
                 {data: 'id', name: 'id'},
                 {data: 'title', name: 'sparePartType.title'},
-                {data: 'name', name: 'user.name'},
-                {data: 'colour', name: 'sparePartType.colour'},
+                {data: 'request_number', name: 'request_number'},
                 {data: 'status', name: 'status'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

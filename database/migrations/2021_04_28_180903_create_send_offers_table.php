@@ -20,6 +20,7 @@ class CreateSendOffersTable extends Migration
             $table->unsignedBigInteger('request_order_id');
             $table->unsignedBigInteger('spare_part_type_id');
             $table->string('size')->nullable();
+            $table->string('offer_id')->nullable();
             $table->string('colour')->nullable();
             $table->string('price')->nullable();
             $table->text('description')->nullable();

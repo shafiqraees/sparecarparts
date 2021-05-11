@@ -17,7 +17,8 @@ class CreateRequestOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('spare_part_type_id')->nullable();
-            $table->text('additional')->nullable();;
+            $table->text('additional')->nullable();
+            $table->string('request_number')->nullable();
             $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('pending')->nullable();
             $table->timestamps();
             $table->softDeletes();

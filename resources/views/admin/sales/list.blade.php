@@ -71,11 +71,9 @@
 
                                                 <th>No</th>
 
-                                                <th>Titile</th>
+                                                <th>Title</th>
 
-                                                <th>Customer Name</th>
-
-                                                <th>Colour</th>
+                                                <th>Request #</th>
 
                                                 <th>status</th>
 

@@ -77,7 +77,7 @@
 
                                                 <th>No</th>
 
-                                                <th>Titile</th>
+                                                <th>Title</th>
 
                                                 <th>Customer Name</th>
 

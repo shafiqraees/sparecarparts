@@ -115,9 +115,12 @@ class HomeController extends Controller
         $queryArray = ['registrationNumber' => $id];
         $api_data = $this->makeRequest( $queryArray );
         $data = json_decode($api_data, true);
-        $cars = Car::search($id)->with(['spareParts'])->first();
-        //dd($spare_parts);
-        return view('frontend.vehicle.detail',compact('data','cars'));
+        if ($data) {
+            $cars = Make::search($data['make'])->with(['spareParts'])->first();
+            return view('frontend.vehicle.detail',compact('data','cars'));
+        } else {
+            return Redirect::back()->withErrors(['error', 'Sorry Record not found.']);
+        }
     }
     /**
      * Show the application dashboard.
@@ -127,7 +130,7 @@ class HomeController extends Controller
     public function partYouNeed($id)
     {
 
-        $data = Car::whereId($id)->with(['spareParts'])->first();
+        $data = Make::whereId($id)->with(['spareParts'])->first();
 
         return view('frontend.vehicle.part_you_need',compact('data'));
     }
