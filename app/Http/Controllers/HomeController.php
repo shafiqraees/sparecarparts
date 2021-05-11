@@ -115,6 +115,7 @@ class HomeController extends Controller
         $queryArray = ['registrationNumber' => $id];
         $api_data = $this->makeRequest( $queryArray );
         $data = json_decode($api_data, true);
+       
         if ($data) {
             $cars = Make::search($data['make'])->with(['spareParts'])->first();
             return view('frontend.vehicle.detail',compact('data','cars'));

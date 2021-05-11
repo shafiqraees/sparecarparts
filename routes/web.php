@@ -28,7 +28,7 @@ Route::post('supplier/join', [SupplierController::class, 'register'])->name('sup
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about');
 Route::get('contact-us', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact');
-Route::get('/vehicel/detai/{reg_number}', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
+Route::get('/vehicel/detail/{reg_number}', [App\Http\Controllers\HomeController::class, 'vehicleDetail'])->name('vehicle.detail');
 Route::get('/select/part/{reg_number}', [App\Http\Controllers\HomeController::class, 'partYouNeed'])->name('part.youneed');
 Route::get('/select/parts/{reg_number}', [App\Http\Controllers\HomeController::class, 'partTyeYouNeed'])->name('parttypes.youneed');
 Route::post('/find/model', [App\Http\Controllers\HomeController::class, 'findModel'])->name('find.model');

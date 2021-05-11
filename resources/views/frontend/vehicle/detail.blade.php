@@ -12,7 +12,9 @@
                 <div class="vehicle-contents">
 
                     <h1>Vehicle Details</h1>
+                    @if(isset($cars->image))
                     <img src="{{Storage::disk('public')->exists('sm/'.$cars->image) ? Storage::disk('public')->url('sm/'.$cars->image) : Storage::disk('public')->url('default.png')}}" alt="">
+                    @endif
                     <div class="vehicle-details"></div>
                     <h3>Make: {{isset($data['make']) ? $data['make'] : ""}}</h3>
                     <h3>Reg Number:  {{isset($data['registrationNumber']) ? $data['registrationNumber'] : $data['registration']}}</h3>
