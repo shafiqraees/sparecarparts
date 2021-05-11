@@ -148,7 +148,7 @@
                 @foreach($make as $brand)
                     <a href="{{ url('car/spareparts/'. $brand->id) }}">
                         <img
-                            src="{{Storage::disk('public')->exists('lg/'.$brand->image) ? Storage::disk('public')->url('lg/'.$brand->image) : Storage::disk('public')->url('default.png')}}"
+                            src="{{Storage::disk('public')->exists('xs/'.$brand->image) ? Storage::disk('public')->url('xs/'.$brand->image) : Storage::disk('public')->url('default.png')}}"
                             alt="">
                     </a>
                 @endforeach
