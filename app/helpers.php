@@ -18,6 +18,7 @@ function SaveImageAllSizes($request, $dir){
     $image_name = $request->image->hashName();
 
     //$request->file('image')->store($dir, ['disk' => 'public']);
+    $request->file('image')->store($dir, ['disk' => 'public']);
      // for local
      Storage::disk('public')->put('lg/' .$dir . $image_name, $lg_image);
      Storage::disk('public')->put('md/' .$dir. $image_name, $md_image);
@@ -120,6 +121,7 @@ function UpdateImageAllSizes($request, $dir, $old_image){
         Storage::disk('public')->delete('md/' . $old_image);
         Storage::disk('public')->delete('sm/' . $old_image);
         Storage::disk('public')->delete('xs/' . $old_image);
+        Storage::disk('public')->delete($dir . $old_image);
     //for s3 bucket
     /*Storage::disk('s3')->delete('lg/' . $old_image);
     Storage::disk('s3')->delete('md/' . $old_image);
@@ -138,7 +140,7 @@ function UpdateImageAllSizes($request, $dir, $old_image){
     $xs_image->response('png');
 
     $image_name = $request->profile_pic->hashName();
-
+    $request->file('image')->store($dir, ['disk' => 'public']);
      Storage::disk('public')->put('lg/' .$dir . $image_name, $lg_image);
      Storage::disk('public')->put('md/' .$dir. $image_name, $md_image);
      Storage::disk('public')->put('sm/' .$dir. $image_name, $sm_image);
