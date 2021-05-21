@@ -146,7 +146,7 @@
         <div class="brands-logos container">
             @if(!empty($make))
                 @foreach($make as $brand)
-                    <a href="{{ url('car/spareparts/'. $brand->id) }}">
+                    <a href="{{route('part.youneed',$brand->id)}}">
                         <img
                             src="{{Storage::disk('public')->exists('sm/'.$brand->image) ? Storage::disk('public')->url('sm/'.$brand->image) : Storage::disk('public')->url('default.png')}}"
                             alt="">

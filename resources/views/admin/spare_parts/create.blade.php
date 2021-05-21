@@ -79,14 +79,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12">
-                                                    <div class="form-group">
+                                                    {{--<div class="form-group">
                                                         <h5>Price
                                                             <span class="required">*</span>
                                                         </h5>
                                                         <div class="controls">
                                                             <input type="number" name="price" class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
-                                                    </div>
+                                                    </div>--}}
                                                     <div class="form-group">
                                                         <h5>Description
                                                             <span class="required">*</span>
